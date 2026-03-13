@@ -66,6 +66,8 @@ body.light .gallery-item:nth-child(1) { background: var(--ink3); }
 body.light .marquee-wrap { background: rgba(0,0,0,0.02); }
 body.light .how-step { background: var(--ink); }
 body.light .how-step:hover { background: rgba(0,0,0,0.02); }
+body.light .step-number { color: rgba(0,0,0,0.12); -webkit-text-stroke: 1px rgba(0,0,0,0.25); text-shadow: 3px 3px 0 rgba(0,0,0,0.06); }
+body.light .how-step:hover .step-number { color: rgba(0,0,0,0.18); -webkit-text-stroke: 1px rgba(0,0,0,0.4); }
 body.light .pricing-addons { background: #fff; }
 body.light .faq-item.open { border-color: rgba(0,0,0,0.15); }
 
@@ -550,13 +552,16 @@ nav {
   font-size: 5rem;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: transparent;
+  color: rgba(255,255,255,0.12);
   -webkit-text-stroke: 1px var(--border);
+  text-shadow: 3px 3px 0 rgba(255,255,255,0.08);
   margin-bottom: 1.5rem;
-  transition: -webkit-text-stroke 0.3s;
+  transition: color 0.3s, -webkit-text-stroke 0.3s, text-shadow 0.3s;
 }
 .how-step:hover .step-number {
-  -webkit-text-stroke: 1px rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.18);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.35);
+  text-shadow: 3px 3px 0 rgba(255,255,255,0.12);
 }
 .step-title {
   font-family: var(--font-display);
@@ -1153,6 +1158,34 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 .form-submit:hover::before { opacity: 1; }
 .form-submit:hover { transform: translateY(-2px); }
 .form-submit span { position: relative; z-index: 1; }
+.addon-price {
+  font-size: 0.65rem;
+  color: var(--p);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-left: 0.35rem;
+  opacity: 0.85;
+}
+.order-total-preview {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.order-total-preview #orderTotalAmt {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
 
 /* ============================================================
    COLORS SECTION
@@ -1980,9 +2013,43 @@ body.light .lightbox-nav:hover {
             </select>
           </div>
         </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="extraPersons">Extra Persons <span class="addon-price">+RM49 each</span></label>
+            <select id="extraPersons" name="extraPersons" class="form-control">
+              <option value="0">None — just the main subject</option>
+              <option value="1">1 extra person (+RM49)</option>
+              <option value="2">2 extra persons (+RM98)</option>
+              <option value="3">3 extra persons (+RM147)</option>
+              <option value="4">4 extra persons (+RM196)</option>
+              <option value="5">5 extra persons (+RM245) — max</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pet">Pet / Animal <span class="addon-price">+RM39</span></label>
+            <select id="pet" name="pet" class="form-control">
+              <option value="no">No — no pet</option>
+              <option value="yes">Yes, add a pet (+RM39)</option>
+            </select>
+          </div>
+        </div>
         <div class="form-group">
-          <label class="form-label" for="addons">Add-ons / Notes</label>
-          <textarea id="addons" name="addons" class="form-control" placeholder="e.g. Extra person (+RM49), pet (+RM39), custom base text (+RM15), or any special requests..."></textarea>
+          <label class="form-label" for="baseText">Custom Base Text <span class="addon-price">+RM15</span></label>
+          <select id="baseText" name="baseText" class="form-control">
+            <option value="no">No custom text</option>
+            <option value="yes">Yes, engrave text on base (+RM15)</option>
+          </select>
+        </div>
+        <div class="form-group" id="baseTextInputGroup" style="display:none; margin-top:-0.5rem;">
+          <label class="form-label" for="baseTextValue">Text to Engrave</label>
+          <input type="text" id="baseTextValue" name="baseTextValue" class="form-control" placeholder="e.g. Happy Birthday, Mama! ❤️" maxlength="40" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="notes">Special Requests</label>
+          <textarea id="notes" name="notes" class="form-control" placeholder="Any special requests, details about the photo, or pose preferences..."></textarea>
+        </div>
+        <div class="order-total-preview" id="orderTotalPreview">
+          Estimated Total: <span id="orderTotalAmt">—</span>
         </div>
         <button type="submit" class="form-submit"><span>Submit Order via WhatsApp</span></button>
       </form>
@@ -2081,18 +2148,75 @@ document.querySelectorAll('.faq-question').forEach(q => {
 // =============================================
 // ORDER FORM → WHATSAPP
 // =============================================
+// =============================================
+// ORDER FORM — ADD-ONS + LIVE TOTAL
+// =============================================
+const TIER_PRICES = {
+  'classic-small': 79, 'classic-medium': 139,
+  'glow-small': 149,   'glow-medium': 219
+};
+const TIER_LABELS = {
+  'classic-small': 'Classic Small (RM79)', 'classic-medium': 'Classic Medium (RM139)',
+  'glow-small': 'Glow Small (RM149)',      'glow-medium': 'Glow Medium (RM219)'
+};
+
+function calcTotal() {
+  const tier   = document.getElementById('tier').value;
+  const extra  = parseInt(document.getElementById('extraPersons').value) || 0;
+  const pet    = document.getElementById('pet').value;
+  const base   = document.getElementById('baseText').value;
+  const base_price = TIER_PRICES[tier] || 0;
+  return base_price + (extra * 49) + (pet === 'yes' ? 39 : 0) + (base === 'yes' ? 15 : 0);
+}
+
+function updateTotal() {
+  const tier = document.getElementById('tier').value;
+  const el   = document.getElementById('orderTotalAmt');
+  el.textContent = tier ? `RM${calcTotal()}` : '—';
+}
+
+// Show/hide engraving text input
+document.getElementById('baseText').addEventListener('change', function() {
+  const grp = document.getElementById('baseTextInputGroup');
+  grp.style.display = this.value === 'yes' ? 'block' : 'none';
+  if (this.value !== 'yes') document.getElementById('baseTextValue').value = '';
+  updateTotal();
+});
+
+// Live total on any change
+['tier','extraPersons','pet'].forEach(id =>
+  document.getElementById(id).addEventListener('change', updateTotal)
+);
+
 document.getElementById('orderForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const d = Object.fromEntries(new FormData(this));
   const waNum = '60XXXXXXXXX'; // Replace with your WhatsApp number
+
+  // Build add-ons list
+  const addons = [];
+  const extra = parseInt(d.extraPersons) || 0;
+  if (extra > 0) addons.push(`${extra} extra person${extra > 1 ? 's' : ''} (+RM${extra * 49})`);
+  if (d.pet === 'yes') addons.push('Pet / animal companion (+RM39)');
+  if (d.baseText === 'yes') {
+    const txt = d.baseTextValue ? ` — "${d.baseTextValue}"` : '';
+    addons.push(`Custom base text${txt} (+RM15)`);
+  }
+
+  const tierLabel = TIER_LABELS[d.tier] || d.tier;
+  const total = calcTotal();
+  const colorMap = { snow: 'Snow (White)', shadow: 'Shadow (Black)', stone: 'Stone (Grey)' };
+
   const msg = encodeURIComponent(
     `Hi! I'd like to place an order 🎉\n\n` +
     `Name: ${d.name}\n` +
     `WhatsApp: ${d.wa}\n` +
-    `Tier: ${d.tier}\n` +
-    `Color: ${d.color}\n` +
-    `Add-ons / Notes: ${d.addons || 'None'}\n\n` +
-    `Please send me the payment link. Thank you!`
+    `Tier: ${tierLabel}\n` +
+    `Color: ${colorMap[d.color] || d.color}\n` +
+    `Add-ons: ${addons.length ? addons.join(', ') : 'None'}\n` +
+    `Estimated Total: RM${total}\n` +
+    (d.notes ? `Special Requests: ${d.notes}\n` : '') +
+    `\nPlease send me the payment link. Thank you!`
   );
   window.open(`https://wa.me/${waNum}?text=${msg}`, '_blank');
 });
