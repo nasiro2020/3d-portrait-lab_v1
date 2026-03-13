@@ -193,6 +193,8 @@ nav {
   display: flex;
   gap: 2.5rem;
   list-style: none;
+  flex-shrink: 0;
+  align-items: center;
 }
 .nav-links a {
   font-family: var(--font-display);
@@ -217,6 +219,10 @@ nav {
   border-radius: 4px;
   text-decoration: none;
   transition: opacity 0.2s;
+  white-space: nowrap;
+  min-width: 10rem;
+  text-align: center;
+  display: inline-block;
 }
 .nav-cta:hover { opacity: 0.85; }
 
@@ -1602,7 +1608,7 @@ body.light .lightbox-nav:hover {
     <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
     <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:0.75rem;">
+  <div style="display:flex;align-items:center;gap:0.75rem;flex-shrink:0;">
     <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
       <span class="lang-icon">EN</span>
     </button>
@@ -2349,7 +2355,7 @@ const TRANSLATIONS = {
   },
   my: {
     'nav.process':'Proses','nav.gallery':'Galeri','nav.pricing':'Harga','nav.faq':'FAQ','nav.order':'Order Sekarang',
-    'hero.label':'Studio Figurin Custom Malaysia','hero.title.em':'Kenangan korang,','hero.title.glow':'Kini Bersinar.',
+    'hero.label':'Studio Figurin Custom Malaysia','hero.title.em':'Kenangan,','hero.title.glow':'Kini Menyinar.',
     'hero.sub':'Kami tukar gambar korang jadi figurin 3D yang detail gila —<br><strong>gaya, ekspresi, baju</strong> — pastu bagi dia glow.',
     'hero.cta':'Order Figurin Korang','hero.ghost':'Tengok Contoh','hero.scroll':'Scroll',
     'marquee.1':'Figurin 3D Custom','marquee.2':'RGB Glow Edition','marquee.3':'Dari Gambar Korang','marquee.4':'Pos Seluruh Malaysia','marquee.5':'Dari RM79',
