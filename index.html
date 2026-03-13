@@ -1335,6 +1335,18 @@ footer {
 }
 
 /* ============================================================
+   TOUCH DEVICES — hide custom cursor, restore tap cursor
+============================================================ */
+@media (pointer: coarse) {
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto; }
+  a, button, summary,
+  .faq-question, .gallery-item, .color-swatch,
+  .btn-glow, .btn-ghost, .wa-button,
+  .form-submit, .nav-hamburger, .theme-toggle { cursor: pointer; }
+}
+
+/* ============================================================
    SMALL PHONES  ≤ 480px
 ============================================================ */
 @media (max-width: 480px) {
@@ -1781,6 +1793,7 @@ footer {
   </div>
 </footer>
 
+<script src="js/main.js"></script>
 <script>
 // =============================================
 // CURSOR
