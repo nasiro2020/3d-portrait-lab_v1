@@ -705,70 +705,41 @@ nav {
   text-align: center;
 }
 
-/* Gallery folder (mobile only) */
-.gallery-folder {
+/* Gallery carousel (mobile only) */
+.gallery-carousel {
   display: none;
-  align-items: center;
-  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 0.75rem;
+  padding: 0.25rem 0 1rem;
+  margin: 0 -1.2rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  scrollbar-width: none;
+}
+.gallery-carousel::-webkit-scrollbar { display: none; }
+.gallery-carousel-item {
+  flex-shrink: 0;
+  width: 72vw;
+  aspect-ratio: 1 / 1;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  overflow: hidden;
   background: var(--ink3);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
+  position: relative;
   cursor: pointer;
-  transition: border-color 0.2s, transform 0.2s;
-  user-select: none;
+  transition: transform 0.2s, border-color 0.2s;
+  animation: galleryGlow 5s ease-in-out infinite;
 }
-.gallery-folder:active { transform: scale(0.98); }
-.gallery-folder:hover { border-color: rgba(255,255,255,0.15); }
-body.light .gallery-folder { background: var(--ink); }
-.gallery-folder-previews {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px;
-  width: 72px;
-  height: 72px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.gfp-cell {
-  background: var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.gfp-cell .figurine-icon {
-  width: 18px;
-  height: 30px;
-  opacity: 0.3;
-}
-.gallery-folder-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  flex: 1;
-}
-.gallery-folder-count {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.gallery-folder-hint {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.gallery-folder-arrow {
-  width: 8px;
-  height: 8px;
-  border-top: 2px solid var(--muted);
-  border-right: 2px solid var(--muted);
-  transform: rotate(45deg);
-  flex-shrink: 0;
+.gallery-carousel-item:first-child { animation: galleryGlow 5s ease-in-out infinite; }
+.gallery-carousel-item:active { transform: scale(0.97); }
+.gallery-carousel-item .gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
+  min-height: unset;
 }
 
 /* ============================================================
@@ -1432,7 +1403,7 @@ body.light .lightbox-nav:hover {
     box-shadow: none;
   }
   .gallery-grid { display: none; }
-  .gallery-folder { display: flex; }
+  .gallery-carousel { display: flex; }
 }
 
 /* ============================================================
@@ -1717,18 +1688,39 @@ body.light .lightbox-nav:hover {
       </div>
       <p class="gallery-sub">Each figurine is sculpted from a real customer photo. Pose, body language, clothing — all captured.</p>
     </div>
-    <div class="gallery-folder reveal" id="galleryFolder">
-      <div class="gallery-folder-previews">
-        <div class="gfp-cell"><div class="figurine-icon"></div></div>
-        <div class="gfp-cell"><div class="figurine-icon"></div></div>
-        <div class="gfp-cell"><div class="figurine-icon"></div></div>
-        <div class="gfp-cell"><div class="figurine-icon"></div></div>
+    <div class="gallery-carousel" id="galleryCarousel">
+      <div class="gallery-carousel-item" data-index="0">
+        <div class="gallery-badge">● Glow Tier</div>
+        <div class="gallery-placeholder">
+          <div class="figurine-icon"></div>
+          <span class="gallery-caption">Mother &amp; Child — Snow</span>
+        </div>
       </div>
-      <div class="gallery-folder-info">
-        <span class="gallery-folder-count">5 Photos</span>
-        <span class="gallery-folder-hint">Tap to browse</span>
+      <div class="gallery-carousel-item" data-index="1">
+        <div class="gallery-placeholder">
+          <div class="figurine-icon"></div>
+          <span class="gallery-caption">Couple — Shadow</span>
+        </div>
       </div>
-      <div class="gallery-folder-arrow"></div>
+      <div class="gallery-carousel-item" data-index="2">
+        <div class="gallery-placeholder">
+          <div class="figurine-icon"></div>
+          <span class="gallery-caption">Solo — Stone</span>
+        </div>
+      </div>
+      <div class="gallery-carousel-item" data-index="3">
+        <div class="gallery-badge green">● Classic</div>
+        <div class="gallery-placeholder">
+          <div class="figurine-icon"></div>
+          <span class="gallery-caption">Family — Snow</span>
+        </div>
+      </div>
+      <div class="gallery-carousel-item" data-index="4">
+        <div class="gallery-placeholder">
+          <div class="figurine-icon"></div>
+          <span class="gallery-caption">With Pet — Stone</span>
+        </div>
+      </div>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1">
@@ -2153,10 +2145,9 @@ galleryItems.forEach((item, i) => {
   item.addEventListener('click', () => showLightbox(i));
 });
 
-const galleryFolder = document.getElementById('galleryFolder');
-if (galleryFolder) {
-  galleryFolder.addEventListener('click', () => showLightbox(0));
-}
+document.querySelectorAll('.gallery-carousel-item').forEach(item => {
+  item.addEventListener('click', () => showLightbox(parseInt(item.dataset.index)));
+});
 
 function closeLightbox() {
   lightboxOverlay.classList.remove('active');
