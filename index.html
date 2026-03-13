@@ -2151,8 +2151,10 @@ document.querySelectorAll('.gallery-carousel-item').forEach(item => {
 const carousel = document.getElementById('galleryCarousel');
 if (carousel) {
   let paused = false;
+  let scrolling = false;
 
   function autoScroll() {
+    if (!scrolling) return;
     const maxScroll = carousel.scrollWidth - carousel.clientWidth;
     if (!paused && maxScroll > 0) {
       carousel.scrollLeft += 0.6;
@@ -2168,7 +2170,17 @@ if (carousel) {
     setTimeout(() => { paused = false; }, 1500);
   }, { passive: true });
 
-  requestAnimationFrame(autoScroll);
+  // Start only when carousel is visible in viewport
+  const carouselObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !scrolling) {
+        scrolling = true;
+        requestAnimationFrame(autoScroll);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  carouselObserver.observe(carousel);
 }
 
 function closeLightbox() {
