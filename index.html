@@ -96,7 +96,7 @@ body.light .theme-toggle:hover { border-color: rgba(0,0,0,0.2); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 
 body {
   background: var(--ink);
@@ -1310,6 +1310,7 @@ footer {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   #hero { padding: 6rem 1.5rem 4rem; }
+  .hero-title { font-size: clamp(2.6rem, 7.5vw, 5rem); }
   #how { padding: 4rem 1.5rem; }
   .how-steps { grid-template-columns: 1fr; }
   .how-step { border-right: none; border-bottom: 1px solid var(--border); }
@@ -1337,7 +1338,7 @@ footer {
    SMALL PHONES  ≤ 480px
 ============================================================ */
 @media (max-width: 480px) {
-  .hero-title { font-size: clamp(2.4rem, 13vw, 3.2rem); line-height: 1; }
+  .hero-title { font-size: clamp(2rem, 10vw, 2.8rem); line-height: 1.05; }
   .hero-sub br { display: none; }
   .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
   .hero-actions { flex-direction: column; align-items: center; width: 100%; }
@@ -1405,7 +1406,7 @@ footer {
 
   <h1 class="hero-title">
     <em>Your photo.</em>
-    <span class="glow-word">Now&nbsp;Glowing.</span>
+    <span class="glow-word">Now Glowing.</span>
   </h1>
 
   <p class="hero-sub">
