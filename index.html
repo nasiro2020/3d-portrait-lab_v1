@@ -2147,41 +2147,6 @@ document.querySelectorAll('.gallery-carousel-item').forEach(item => {
   item.addEventListener('click', () => showLightbox(parseInt(item.dataset.index)));
 });
 
-// Auto-scroll carousel
-const carousel = document.getElementById('galleryCarousel');
-if (carousel) {
-  let paused = false;
-  let scrolling = false;
-
-  function autoScroll() {
-    if (!scrolling) return;
-    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-    if (!paused && maxScroll > 0) {
-      carousel.scrollLeft += 0.6;
-      if (carousel.scrollLeft >= maxScroll - 1) {
-        carousel.scrollLeft = 0;
-      }
-    }
-    requestAnimationFrame(autoScroll);
-  }
-
-  carousel.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-  carousel.addEventListener('touchend', () => {
-    setTimeout(() => { paused = false; }, 1500);
-  }, { passive: true });
-
-  // Start only when carousel is visible in viewport
-  const carouselObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !scrolling) {
-        scrolling = true;
-        requestAnimationFrame(autoScroll);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  carouselObserver.observe(carousel);
-}
 
 function closeLightbox() {
   lightboxOverlay.classList.remove('active');
