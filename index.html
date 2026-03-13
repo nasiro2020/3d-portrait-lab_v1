@@ -58,8 +58,8 @@ body.light .hero-title em {
 body.light .cursor-ring { border-color: rgba(0,0,0,0.15); }
 body.light .swatch-circle.shadow { border-color: rgba(0,0,0,0.12); }
 body.light .form-control { background: #fff; }
-body.light .pricing-card-classic { background: #fff; }
-body.light .pricing-card-glow { background: var(--ink3); }
+body.light .pricing-card-classic { background: var(--ink3); }
+body.light .pricing-card-glow { background: #fff; }
 body.light .addon-item { background: var(--ink); }
 body.light .gallery-item { background: var(--surface); }
 body.light .gallery-item:nth-child(1) { background: var(--ink3); }
@@ -635,7 +635,6 @@ nav {
 .gallery-item:nth-child(3) { grid-column: span 3; }
 .gallery-item:nth-child(4) { grid-column: span 4; }
 .gallery-item:nth-child(5) { grid-column: span 3; }
-.gallery-item:nth-child(6) { grid-column: span 4; }
 
 /* Placeholder figurine silhouette */
 .gallery-placeholder {
@@ -1232,6 +1231,129 @@ footer {
 }
 
 /* ============================================================
+   LIGHTBOX
+============================================================ */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  background: rgba(0, 0, 0, 0);
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.30);
+}
+body.light .lightbox-overlay.active {
+  background: rgba(245, 243, 239, 0.33);
+}
+.lightbox-content {
+  position: relative;
+  width: min(900px, 80vw);
+  height: min(900px, 80vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  transform: scale(0.85);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+}
+.lightbox-content .gallery-item {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.lightbox-content .gallery-placeholder {
+  height: 100%;
+  aspect-ratio: unset;
+  min-height: unset;
+}
+.lightbox-overlay.active .lightbox-content {
+  transform: scale(1);
+}
+.lightbox-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(0, 0, 0, 0.75); }
+body.light .lightbox-close { background: rgba(0, 0, 0, 0.2); color: #111; }
+body.light .lightbox-close:hover { background: rgba(0, 0, 0, 0.35); }
+.lightbox-nav {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  z-index: 9001;
+  margin: 0 2.5rem;
+}
+.lightbox-nav::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  border-radius: 1px;
+}
+.lightbox-nav.prev::after { transform: rotate(-135deg) translate(-1px, 1px); }
+.lightbox-nav.next::after { transform: rotate(45deg) translate(-1px, 1px); }
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+.lightbox-nav:active { transform: scale(0.88); transition-duration: 0.08s; }
+body.light .lightbox-nav {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.5);
+}
+body.light .lightbox-nav:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
    RESPONSIVE
 ============================================================ */
 /* ============================================================
@@ -1369,6 +1491,15 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">&#8592;</button>
+  <div class="lightbox-content" id="lightboxContent">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  </div>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Next">&#8594;</button>
+</div>
 
 <!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
@@ -1535,12 +1666,6 @@ footer {
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
           <span class="gallery-caption">With Pet — Stone</span>
-        </div>
-      </div>
-      <div class="gallery-item reveal reveal-delay-4">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption">Solo — Shadow</span>
         </div>
       </div>
     </div>
@@ -1904,6 +2029,52 @@ function updateNavBg() {
   }
 }
 window.addEventListener('scroll', updateNavBg);
+
+// =============================================
+// GALLERY LIGHTBOX
+// =============================================
+const lightboxOverlay = document.getElementById('lightboxOverlay');
+const lightboxContent = document.getElementById('lightboxContent');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+let currentIndex = 0;
+
+function showLightbox(index) {
+  currentIndex = (index + galleryItems.length) % galleryItems.length;
+  const clone = galleryItems[currentIndex].cloneNode(true);
+  clone.classList.remove('reveal', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4');
+  clone.classList.add('visible');
+  clone.style.cursor = 'default';
+  // Clear previous content except the close button
+  Array.from(lightboxContent.children).forEach(c => { if (c !== lightboxClose) c.remove(); });
+  lightboxContent.appendChild(clone);
+  lightboxOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+galleryItems.forEach((item, i) => {
+  item.addEventListener('click', () => showLightbox(i));
+});
+
+function closeLightbox() {
+  lightboxOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', () => showLightbox(currentIndex - 1));
+lightboxNext.addEventListener('click', () => showLightbox(currentIndex + 1));
+lightboxOverlay.addEventListener('click', e => {
+  if (e.target === lightboxOverlay) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (!lightboxOverlay.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') showLightbox(currentIndex - 1);
+  if (e.key === 'ArrowRight') showLightbox(currentIndex + 1);
+});
 
 // =============================================
 // THEME TOGGLE
