@@ -705,6 +705,72 @@ nav {
   text-align: center;
 }
 
+/* Gallery folder (mobile only) */
+.gallery-folder {
+  display: none;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  user-select: none;
+}
+.gallery-folder:active { transform: scale(0.98); }
+.gallery-folder:hover { border-color: rgba(255,255,255,0.15); }
+body.light .gallery-folder { background: var(--ink); }
+.gallery-folder-previews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.gfp-cell {
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.gfp-cell .figurine-icon {
+  width: 18px;
+  height: 30px;
+  opacity: 0.3;
+}
+.gallery-folder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+.gallery-folder-count {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.gallery-folder-hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gallery-folder-arrow {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--muted);
+  border-right: 2px solid var(--muted);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
 /* ============================================================
    PRICING
 ============================================================ */
@@ -1365,6 +1431,8 @@ body.light .lightbox-nav:hover {
     border-radius: 0;
     box-shadow: none;
   }
+  .gallery-grid { display: none; }
+  .gallery-folder { display: flex; }
 }
 
 /* ============================================================
@@ -1648,6 +1716,19 @@ body.light .lightbox-nav:hover {
         <h2 class="section-title">Real<br>Results</h2>
       </div>
       <p class="gallery-sub">Each figurine is sculpted from a real customer photo. Pose, body language, clothing — all captured.</p>
+    </div>
+    <div class="gallery-folder reveal" id="galleryFolder">
+      <div class="gallery-folder-previews">
+        <div class="gfp-cell"><div class="figurine-icon"></div></div>
+        <div class="gfp-cell"><div class="figurine-icon"></div></div>
+        <div class="gfp-cell"><div class="figurine-icon"></div></div>
+        <div class="gfp-cell"><div class="figurine-icon"></div></div>
+      </div>
+      <div class="gallery-folder-info">
+        <span class="gallery-folder-count">5 Photos</span>
+        <span class="gallery-folder-hint">Tap to browse</span>
+      </div>
+      <div class="gallery-folder-arrow"></div>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1">
@@ -2071,6 +2152,11 @@ function showLightbox(index) {
 galleryItems.forEach((item, i) => {
   item.addEventListener('click', () => showLightbox(i));
 });
+
+const galleryFolder = document.getElementById('galleryFolder');
+if (galleryFolder) {
+  galleryFolder.addEventListener('click', () => showLightbox(0));
+}
 
 function closeLightbox() {
   lightboxOverlay.classList.remove('active');
