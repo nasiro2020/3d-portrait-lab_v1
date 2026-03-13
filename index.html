@@ -74,7 +74,7 @@ body.light .faq-item.open { border-color: rgba(0,0,0,0.15); }
 /* ============================================================
    THEME TOGGLE
 ============================================================ */
-.theme-toggle {
+.theme-toggle, .lang-toggle {
   width: 34px; height: 34px;
   border-radius: 50%;
   border: 1px solid var(--border);
@@ -89,12 +89,13 @@ body.light .faq-item.open { border-color: rgba(0,0,0,0.15); }
   flex-shrink: 0;
   line-height: 1;
 }
-.theme-toggle:hover {
+.lang-toggle { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.05em; font-family: var(--font-display); }
+.theme-toggle:hover, .lang-toggle:hover {
   color: var(--text);
   border-color: rgba(255,255,255,0.2);
   transform: rotate(20deg);
 }
-body.light .theme-toggle:hover { border-color: rgba(0,0,0,0.2); }
+body.light .theme-toggle:hover, body.light .lang-toggle:hover { border-color: rgba(0,0,0,0.2); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1549,7 +1550,7 @@ body.light .lightbox-nav:hover {
   a, button, summary,
   .faq-question, .gallery-item, .color-swatch,
   .btn-glow, .btn-ghost, .wa-button,
-  .form-submit, .nav-hamburger, .theme-toggle { cursor: pointer; }
+  .form-submit, .nav-hamburger, .theme-toggle, .lang-toggle { cursor: pointer; }
 }
 
 /* ============================================================
@@ -1596,16 +1597,19 @@ body.light .lightbox-nav:hover {
     3D Portrait Lab
   </a>
   <ul class="nav-links">
-    <li><a href="#how">Process</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#how" data-i18n="nav.process">Process</a></li>
+    <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+      <span class="lang-icon">EN</span>
+    </button>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
       <span class="theme-icon">☀</span>
     </button>
-    <a href="#order" class="nav-cta">Order Now</a>
+    <a href="#order" class="nav-cta" data-i18n="nav.order">Order Now</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -1615,12 +1619,12 @@ body.light .lightbox-nav:hover {
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
   <ul>
-    <li><a href="#how">Process</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#how" data-i18n="nav.process">Process</a></li>
+    <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
   </ul>
-  <a href="#order" class="btn-glow"><span>Order Now</span></a>
+  <a href="#order" class="btn-glow"><span data-i18n="nav.order">Order Now</span></a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -1629,45 +1633,45 @@ body.light .lightbox-nav:hover {
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-orb hero-orb-3"></div>
 
-  <p class="hero-label">Malaysia's Custom Figurine Studio</p>
+  <p class="hero-label" data-i18n="hero.label">Malaysia's Custom Figurine Studio</p>
 
   <h1 class="hero-title">
-    <em>Your photo.</em>
-    <span class="glow-word">Now Glowing.</span>
+    <em data-i18n="hero.title.em">Your photo.</em>
+    <span class="glow-word" data-i18n="hero.title.glow">Now Glowing.</span>
   </h1>
 
-  <p class="hero-sub">
+  <p class="hero-sub" data-i18n="hero.sub">
     We sculpt your photo into a detailed 3D figurine —<br>
     <strong>pose, expression, clothing</strong> — then make it glow.
   </p>
 
   <div class="hero-actions">
-    <a href="#order" class="btn-glow"><span>Order Your Figurine</span></a>
-    <a href="#gallery" class="btn-ghost">See Examples</a>
+    <a href="#order" class="btn-glow"><span data-i18n="hero.cta">Order Your Figurine</span></a>
+    <a href="#gallery" class="btn-ghost" data-i18n="hero.ghost">See Examples</a>
   </div>
 
   <div style="position:absolute;bottom:5rem;left:0;right:0;" class="reveal">
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <span class="marquee-item">Custom 3D Figurines</span>
+        <span class="marquee-item" data-i18n="marquee.1">Custom 3D Figurines</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">RGB Glow Edition</span>
+        <span class="marquee-item" data-i18n="marquee.2">RGB Glow Edition</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">From Your Photo</span>
+        <span class="marquee-item" data-i18n="marquee.3">From Your Photo</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">Ships Nationwide</span>
+        <span class="marquee-item" data-i18n="marquee.4">Ships Nationwide</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">From RM79</span>
+        <span class="marquee-item" data-i18n="marquee.5">From RM79</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">Custom 3D Figurines</span>
+        <span class="marquee-item" data-i18n="marquee.1">Custom 3D Figurines</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">RGB Glow Edition</span>
+        <span class="marquee-item" data-i18n="marquee.2">RGB Glow Edition</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">From Your Photo</span>
+        <span class="marquee-item" data-i18n="marquee.3">From Your Photo</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">Ships Nationwide</span>
+        <span class="marquee-item" data-i18n="marquee.4">Ships Nationwide</span>
         <span class="marquee-item"><span>●</span></span>
-        <span class="marquee-item">From RM79</span>
+        <span class="marquee-item" data-i18n="marquee.5">From RM79</span>
         <span class="marquee-item"><span>●</span></span>
       </div>
     </div>
@@ -1675,7 +1679,7 @@ body.light .lightbox-nav:hover {
 
   <div class="hero-scroll">
     <div class="scroll-line"></div>
-    <span class="scroll-label">Scroll</span>
+    <span class="scroll-label" data-i18n="hero.scroll">Scroll</span>
   </div>
 </section>
 
@@ -1683,27 +1687,27 @@ body.light .lightbox-nav:hover {
 <section id="how">
   <div class="how-inner">
     <div class="how-header reveal">
-      <p class="section-label">001 / Process</p>
-      <h2 class="section-title">How It<br>Works</h2>
+      <p class="section-label" data-i18n="how.label">001 / Process</p>
+      <h2 class="section-title" data-i18n="how.title">How It<br>Works</h2>
     </div>
     <div class="how-steps">
       <div class="how-step reveal reveal-delay-1">
         <div class="step-number">01</div>
-        <h3 class="step-title">Send Your Photo</h3>
-        <p class="step-desc">Any clear photo — solo, couple, family, or with a pet. After payment, simply WhatsApp us your photo and we handle the rest.</p>
-        <span class="step-tag">You do this</span>
+        <h3 class="step-title" data-i18n="how.step1.title">Send Your Photo</h3>
+        <p class="step-desc" data-i18n="how.step1.desc">Any clear photo — solo, couple, family, or with a pet. After payment, simply WhatsApp us your photo and we handle the rest.</p>
+        <span class="step-tag" data-i18n="how.step1.tag">You do this</span>
       </div>
       <div class="how-step reveal reveal-delay-2">
         <div class="step-number">02</div>
-        <h3 class="step-title">We Sculpt in 3D</h3>
-        <p class="step-desc">We isolate your subject, generate the 3D model, refine it in Blender — capturing your pose, clothing, and expression.</p>
-        <span class="step-tag">We do this</span>
+        <h3 class="step-title" data-i18n="how.step2.title">We Sculpt in 3D</h3>
+        <p class="step-desc" data-i18n="how.step2.desc">We isolate your subject, generate the 3D model, refine it in Blender — capturing your pose, clothing, and expression.</p>
+        <span class="step-tag" data-i18n="how.step2.tag">We do this</span>
       </div>
       <div class="how-step reveal reveal-delay-3">
         <div class="step-number">03</div>
-        <h3 class="step-title">Receive &amp; Glow</h3>
-        <p class="step-desc">Printed, assembled with your chosen base, and shipped to you. Glow tier comes with full RGB app control via WLED.</p>
-        <span class="step-tag">~7–14 days</span>
+        <h3 class="step-title" data-i18n="how.step3.title">Receive &amp; Glow</h3>
+        <p class="step-desc" data-i18n="how.step3.desc">Printed, assembled with your chosen base, and shipped to you. Glow tier comes with full RGB app control via WLED.</p>
+        <span class="step-tag" data-i18n="how.step3.tag">~7–14 days</span>
       </div>
     </div>
   </div>
@@ -1714,42 +1718,42 @@ body.light .lightbox-nav:hover {
   <div class="gallery-inner">
     <div class="gallery-header reveal">
       <div class="gallery-header-text">
-        <p class="section-label">002 / Gallery</p>
-        <h2 class="section-title">Real<br>Results</h2>
+        <p class="section-label" data-i18n="gallery.label">002 / Gallery</p>
+        <h2 class="section-title" data-i18n="gallery.title">Real<br>Results</h2>
       </div>
-      <p class="gallery-sub">Each figurine is sculpted from a real customer photo. Pose, body language, clothing — all captured.</p>
+      <p class="gallery-sub" data-i18n="gallery.sub">Each figurine is sculpted from a real customer photo. Pose, body language, clothing — all captured.</p>
     </div>
     <div class="gallery-carousel" id="galleryCarousel">
       <div class="gallery-carousel-item" data-index="0">
         <div class="gallery-badge">● Glow Tier</div>
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Mother &amp; Child — Snow</span>
+          <span class="gallery-caption" data-i18n="gallery.cap1">Mother &amp; Child — Snow</span>
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="1">
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Couple — Shadow</span>
+          <span class="gallery-caption" data-i18n="gallery.cap2">Couple — Shadow</span>
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="2">
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Solo — Stone</span>
+          <span class="gallery-caption" data-i18n="gallery.cap3">Solo — Stone</span>
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="3">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Family — Snow</span>
+          <span class="gallery-caption" data-i18n="gallery.cap4">Family — Snow</span>
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="4">
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">With Pet — Stone</span>
+          <span class="gallery-caption" data-i18n="gallery.cap5">With Pet — Stone</span>
         </div>
       </div>
     </div>
@@ -1758,32 +1762,32 @@ body.light .lightbox-nav:hover {
         <div class="gallery-badge">● Glow Tier</div>
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Mother &amp; Child — Snow</span>
+          <span class="gallery-caption" data-i18n="gallery.cap1">Mother &amp; Child — Snow</span>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Couple — Shadow</span>
+          <span class="gallery-caption" data-i18n="gallery.cap2">Couple — Shadow</span>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Solo — Stone</span>
+          <span class="gallery-caption" data-i18n="gallery.cap3">Solo — Stone</span>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">Family — Snow</span>
+          <span class="gallery-caption" data-i18n="gallery.cap4">Family — Snow</span>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
         <div class="gallery-placeholder">
           <div class="figurine-icon"></div>
-          <span class="gallery-caption">With Pet — Stone</span>
+          <span class="gallery-caption" data-i18n="gallery.cap5">With Pet — Stone</span>
         </div>
       </div>
     </div>
@@ -1793,7 +1797,7 @@ body.light .lightbox-nav:hover {
 <!-- ===== COLORS ===== -->
 <section id="colors">
   <div class="colors-inner">
-    <h3 class="colors-heading reveal">Three<br>Colors</h3>
+    <h3 class="colors-heading reveal" data-i18n="colors.heading">Three<br>Colors</h3>
     <ul class="colors-list">
       <li class="color-swatch reveal reveal-delay-1">
         <div class="swatch-circle snow"></div>
@@ -1808,7 +1812,7 @@ body.light .lightbox-nav:hover {
         <span class="swatch-name">Stone</span>
       </li>
     </ul>
-    <p class="colors-note reveal reveal-delay-4"><em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em></p>
+    <p class="colors-note reveal reveal-delay-4" data-i18n="colors.note"><em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em></p>
   </div>
 </section>
 
@@ -1816,69 +1820,69 @@ body.light .lightbox-nav:hover {
 <section id="pricing">
   <div class="pricing-inner">
     <div class="pricing-header reveal">
-      <p class="section-label" style="justify-content:center;">003 / Pricing</p>
-      <h2 class="section-title">Simple<br>Pricing</h2>
+      <p class="section-label" style="justify-content:center;" data-i18n="pricing.label">003 / Pricing</p>
+      <h2 class="section-title" data-i18n="pricing.title">Simple<br>Pricing</h2>
     </div>
     <div class="pricing-grid">
       <div class="pricing-card pricing-card-classic reveal reveal-delay-1">
-        <p class="card-tier">Tier 01</p>
-        <h3 class="card-name">Classic</h3>
-        <p class="card-desc">No LED. Pure sculpt — your figurine in print form.</p>
+        <p class="card-tier" data-i18n="classic.tier">Tier 01</p>
+        <h3 class="card-name" data-i18n="classic.name">Classic</h3>
+        <p class="card-desc" data-i18n="classic.desc">No LED. Pure sculpt — your figurine in print form.</p>
         <div class="card-prices">
           <div class="price-row">
-            <div class="price-size">Small<small>~10cm height</small></div>
+            <div class="price-size" data-i18n="size.small">Small<small>~10cm height</small></div>
             <div class="price-amount"><span>RM</span>79</div>
           </div>
           <div class="price-row">
-            <div class="price-size">Medium<small>~18cm height</small></div>
+            <div class="price-size" data-i18n="size.medium">Medium<small>~18cm height</small></div>
             <div class="price-amount"><span>RM</span>139</div>
           </div>
         </div>
         <ul class="card-features">
-          <li>Made from your photo</li>
-          <li>PLA print — Snow, Shadow, or Stone</li>
-          <li>Flat printed base</li>
-          <li>Ships in 7–14 days</li>
+          <li data-i18n="classic.f1">Made from your photo</li>
+          <li data-i18n="classic.f2">PLA print — Snow, Shadow, or Stone</li>
+          <li data-i18n="classic.f3">Flat printed base</li>
+          <li data-i18n="classic.f4">Ships in 7–14 days</li>
         </ul>
       </div>
       <div class="pricing-card pricing-card-glow reveal reveal-delay-2">
-        <div class="hot-badge">Most Popular</div>
-        <p class="card-tier">Tier 02</p>
+        <div class="hot-badge" data-i18n="glow.badge">Most Popular</div>
+        <p class="card-tier" data-i18n="glow.tier">Tier 02</p>
         <h3 class="card-name">Glow ✦</h3>
-        <p class="card-desc">Full RGB lighting + app control. The one that lights up the room.</p>
+        <p class="card-desc" data-i18n="glow.desc">Full RGB lighting + app control. The one that lights up the room.</p>
         <div class="card-prices">
           <div class="price-row">
-            <div class="price-size">Small<small>~10cm height</small></div>
+            <div class="price-size" data-i18n="size.small">Small<small>~10cm height</small></div>
             <div class="price-amount"><span>RM</span>149</div>
           </div>
           <div class="price-row">
-            <div class="price-size">Medium<small>~18cm height</small></div>
+            <div class="price-size" data-i18n="size.medium">Medium<small>~18cm height</small></div>
             <div class="price-amount"><span>RM</span>219</div>
           </div>
         </div>
         <ul class="card-features">
-          <li>Everything in Classic</li>
-          <li>Two-part RGB LED base</li>
-          <li>ESP32-C3 + WLED firmware</li>
-          <li>Millions of colors via free app</li>
-          <li>USB powered — no batteries</li>
-          <li>Best with Snow color</li>
+          <li data-i18n="glow.f1">Everything in Classic</li>
+          <li data-i18n="glow.f2">Two-part RGB LED base</li>
+          <li data-i18n="glow.f3">ESP32-C3 + WLED firmware</li>
+          <li data-i18n="glow.f4">Millions of colors via free app</li>
+          <li data-i18n="glow.f5">USB powered — no batteries</li>
+          <li data-i18n="glow.f6">Best with Snow color</li>
         </ul>
       </div>
     </div>
     <div class="pricing-addons reveal reveal-delay-3">
-      <p class="addons-title">Add-Ons</p>
+      <p class="addons-title" data-i18n="addons.title">Add-Ons</p>
       <ul class="addons-list">
         <li class="addon-item">
-          <span class="addon-name">Extra person</span>
+          <span class="addon-name" data-i18n="addon.person">Extra person</span>
           <span class="addon-price">+RM49</span>
         </li>
         <li class="addon-item">
-          <span class="addon-name">Pet / animal companion</span>
+          <span class="addon-name" data-i18n="addon.pet">Pet / animal companion</span>
           <span class="addon-price">+RM39</span>
         </li>
         <li class="addon-item">
-          <span class="addon-name">Custom text on base</span>
+          <span class="addon-name" data-i18n="addon.text">Custom text on base</span>
           <span class="addon-price">+RM15</span>
         </li>
       </ul>
@@ -1890,72 +1894,72 @@ body.light .lightbox-nav:hover {
 <section id="faq">
   <div class="faq-inner">
     <div class="faq-header reveal">
-      <p class="section-label">004 / FAQ</p>
-      <h2 class="section-title">Questions</h2>
+      <p class="section-label" data-i18n="faq.label">004 / FAQ</p>
+      <h2 class="section-title" data-i18n="faq.title">Questions</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal reveal-delay-1">
         <div class="faq-question">
-          <span class="faq-q-text">How accurate will my figurine look?</span>
+          <span class="faq-q-text" data-i18n="faq.q1">How accurate will my figurine look?</span>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
+          <div class="faq-answer-inner" data-i18n="faq.a1">
             Your figurine clearly captures your pose, body language, clothing details, and overall likeness. It's a detailed personal sculpture — recognizable and personal, not a hyper-realistic replica. We always show real before/after examples so you know exactly what to expect before ordering.
           </div>
         </div>
       </div>
       <div class="faq-item reveal reveal-delay-2">
         <div class="faq-question">
-          <span class="faq-q-text">How long does production take?</span>
+          <span class="faq-q-text" data-i18n="faq.q2">How long does production take?</span>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
+          <div class="faq-answer-inner" data-i18n="faq.a2">
             Estimated 7–14 days from when we receive your photo. We'll keep you updated via WhatsApp throughout the process.
           </div>
         </div>
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <div class="faq-question">
-          <span class="faq-q-text">How does the RGB lighting work?</span>
+          <span class="faq-q-text" data-i18n="faq.q3">How does the RGB lighting work?</span>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
+          <div class="faq-answer-inner" data-i18n="faq.a3">
             Glow tier figurines include an LED base with an ESP32-C3 controller running open-source WLED firmware. Download the free WLED app (iOS/Android), connect to the figurine's WiFi hotspot, and control millions of colors and effects from your phone. Powered via USB — plug into any charger, power bank, or TV port.
           </div>
         </div>
       </div>
       <div class="faq-item reveal reveal-delay-2">
         <div class="faq-question">
-          <span class="faq-q-text">Can I have more than one person in the figurine?</span>
+          <span class="faq-q-text" data-i18n="faq.q4">Can I have more than one person in the figurine?</span>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
+          <div class="faq-answer-inner" data-i18n="faq.a4">
             Yes! Multi-person figurines are one of our most popular options — couples, parent-child, and group of friends all work great. Add +RM49 per extra person. We can also add a pet companion for +RM39.
           </div>
         </div>
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <div class="faq-question">
-          <span class="faq-q-text">What photo should I send?</span>
+          <span class="faq-q-text" data-i18n="faq.q5">What photo should I send?</span>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
+          <div class="faq-answer-inner" data-i18n="faq.a5">
             Best results come from well-lit photos with the full body visible (head to toe), in the pose you want captured. Avoid heavily backlit or blurry photos. We'll let you know if we need a better shot before starting.
           </div>
         </div>
       </div>
       <div class="faq-item reveal reveal-delay-2">
         <div class="faq-question">
-          <span class="faq-q-text">What is your refund policy?</span>
+          <span class="faq-q-text" data-i18n="faq.q6">What is your refund policy?</span>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">
+          <div class="faq-answer-inner" data-i18n="faq.a6">
             Because each figurine is made-to-order from your photo, we do not offer refunds once production has started. If there's a production defect or shipping damage, we will remake or compensate accordingly. Contact us via WhatsApp immediately if there's an issue.
           </div>
         </div>
@@ -1968,14 +1972,14 @@ body.light .lightbox-nav:hover {
 <section id="order">
   <div class="order-inner">
     <div class="order-left reveal">
-      <p class="section-label">005 / Order</p>
-      <h2 class="section-title">Let's<br>Make Yours</h2>
-      <p class="order-body">Fill in the form and we'll confirm your order. Or just drop us a message directly on WhatsApp — we're happy to answer any questions first.</p>
+      <p class="section-label" data-i18n="order.label">005 / Order</p>
+      <h2 class="section-title" data-i18n="order.title">Let's<br>Make Yours</h2>
+      <p class="order-body" data-i18n="order.body">Fill in the form and we'll confirm your order. Or just drop us a message directly on WhatsApp — we're happy to answer any questions first.</p>
       <a href="https://wa.me/60XXXXXXXXX" class="wa-button" target="_blank">
         <span class="wa-icon">💬</span>
-        Chat on WhatsApp
+        <span data-i18n="order.wa">Chat on WhatsApp</span>
       </a>
-      <p class="order-note">
+      <p class="order-note" data-i18n="order.note">
         We accept FPX · Touch n' Go · GrabPay · Boost<br>
         Based in Malaysia · Ships nationwide · 7–14 day turnaround
       </p>
@@ -1984,19 +1988,19 @@ body.light .lightbox-nav:hover {
       <form class="order-form" id="orderForm">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="name">Your Name</label>
+            <label class="form-label" for="name" data-i18n="form.name">Your Name</label>
             <input type="text" id="name" name="name" class="form-control" placeholder="Ali bin Ahmad" required />
           </div>
           <div class="form-group">
-            <label class="form-label" for="wa">WhatsApp Number</label>
+            <label class="form-label" for="wa" data-i18n="form.wa">WhatsApp Number</label>
             <input type="tel" id="wa" name="wa" class="form-control" placeholder="+60 12-345 6789" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="tier">Tier</label>
+            <label class="form-label" for="tier" data-i18n="form.tier">Tier</label>
             <select id="tier" name="tier" class="form-control" required>
-              <option value="">Select Tier</option>
+              <option value="" data-i18n="form.tier.select">Select Tier</option>
               <option value="classic-small">Classic Small — RM79</option>
               <option value="classic-medium">Classic Medium — RM139</option>
               <option value="glow-small">Glow Small — RM149 ✦</option>
@@ -2004,20 +2008,20 @@ body.light .lightbox-nav:hover {
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" for="color">Color</label>
+            <label class="form-label" for="color" data-i18n="form.color">Color</label>
             <select id="color" name="color" class="form-control" required>
-              <option value="">Select Color</option>
-              <option value="snow">Snow (White) — Recommended for Glow</option>
-              <option value="shadow">Shadow (Black)</option>
-              <option value="stone">Stone (Grey)</option>
+              <option value="" data-i18n="form.color.select">Select Color</option>
+              <option value="snow" data-i18n="form.color.snow">Snow (White) — Recommended for Glow</option>
+              <option value="shadow" data-i18n="form.color.shadow">Shadow (Black)</option>
+              <option value="stone" data-i18n="form.color.stone">Stone (Grey)</option>
             </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="extraPersons">Extra Persons <span class="addon-price">+RM49 each</span></label>
+            <label class="form-label" for="extraPersons"><span data-i18n="form.extra">Extra Persons</span> <span class="addon-price">+RM49 each</span></label>
             <select id="extraPersons" name="extraPersons" class="form-control">
-              <option value="0">None — just the main subject</option>
+              <option value="0" data-i18n="form.extra.none">None — just the main subject</option>
               <option value="1">1 extra person (+RM49)</option>
               <option value="2">2 extra persons (+RM98)</option>
               <option value="3">3 extra persons (+RM147)</option>
@@ -2026,32 +2030,32 @@ body.light .lightbox-nav:hover {
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" for="pet">Pet / Animal <span class="addon-price">+RM39</span></label>
+            <label class="form-label" for="pet"><span data-i18n="form.pet">Pet / Animal</span> <span class="addon-price">+RM39</span></label>
             <select id="pet" name="pet" class="form-control">
-              <option value="no">No — no pet</option>
-              <option value="yes">Yes, add a pet (+RM39)</option>
+              <option value="no" data-i18n="form.pet.no">No — no pet</option>
+              <option value="yes" data-i18n="form.pet.yes">Yes, add a pet (+RM39)</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="baseText">Custom Base Text <span class="addon-price">+RM15</span></label>
+          <label class="form-label" for="baseText"><span data-i18n="form.base">Custom Base Text</span> <span class="addon-price">+RM15</span></label>
           <select id="baseText" name="baseText" class="form-control">
-            <option value="no">No custom text</option>
-            <option value="yes">Yes, engrave text on base (+RM15)</option>
+            <option value="no" data-i18n="form.base.no">No custom text</option>
+            <option value="yes" data-i18n="form.base.yes">Yes, engrave text on base (+RM15)</option>
           </select>
         </div>
         <div class="form-group" id="baseTextInputGroup" style="display:none; margin-top:-0.5rem;">
-          <label class="form-label" for="baseTextValue">Text to Engrave</label>
-          <input type="text" id="baseTextValue" name="baseTextValue" class="form-control" placeholder="e.g. Happy Birthday, Mama! ❤️" maxlength="40" />
+          <label class="form-label" for="baseTextValue" data-i18n="form.engrave">Text to Engrave</label>
+          <input type="text" id="baseTextValue" name="baseTextValue" class="form-control" placeholder="e.g. Happy Birthday, Mama! ❤️" data-i18n-placeholder="form.engrave.ph" maxlength="40" />
         </div>
         <div class="form-group">
-          <label class="form-label" for="notes">Special Requests</label>
-          <textarea id="notes" name="notes" class="form-control" placeholder="Any special requests, details about the photo, or pose preferences..."></textarea>
+          <label class="form-label" for="notes" data-i18n="form.notes">Special Requests</label>
+          <textarea id="notes" name="notes" class="form-control" placeholder="Any special requests, details about the photo, or pose preferences..." data-i18n-placeholder="form.notes.ph"></textarea>
         </div>
         <div class="order-total-preview" id="orderTotalPreview">
-          Estimated Total: <span id="orderTotalAmt">—</span>
+          <span data-i18n="form.total">Estimated Total:</span> <span id="orderTotalAmt">—</span>
         </div>
-        <button type="submit" class="form-submit"><span>Submit Order via WhatsApp</span></button>
+        <button type="submit" class="form-submit"><span data-i18n="form.submit">Submit Order via WhatsApp</span></button>
       </form>
     </div>
   </div>
@@ -2066,7 +2070,7 @@ body.light .lightbox-nav:hover {
       <li><a href="#" target="_blank">TikTok</a></li>
       <li><a href="https://wa.me/60XXXXXXXXX" target="_blank">WhatsApp</a></li>
     </ul>
-    <p class="footer-copy">© 2026 3D Portrait Lab · Malaysia · All prices in RM</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2026 3D Portrait Lab · Malaysia · All prices in RM</p>
   </div>
 </footer>
 
@@ -2303,6 +2307,116 @@ lightboxContent.addEventListener('touchend', e => {
   if (Math.abs(dx) < 40) return;
   showLightbox(dx < 0 ? currentIndex + 1 : currentIndex - 1);
 }, { passive: true });
+
+// =============================================
+// LANGUAGE TOGGLE
+// =============================================
+const TRANSLATIONS = {
+  en: {
+    'nav.process':'Process','nav.gallery':'Gallery','nav.pricing':'Pricing','nav.faq':'FAQ','nav.order':'Order Now',
+    'hero.label':"Malaysia's Custom Figurine Studio",'hero.title.em':'Your moment,','hero.title.glow':'Now Glowing.',
+    'hero.sub':'We sculpt your photo into a detailed 3D figurine —<br><strong>pose, expression, clothing</strong> — then make it glow.',
+    'hero.cta':'Order Your Figurine','hero.ghost':'See Examples','hero.scroll':'Scroll',
+    'marquee.1':'Custom 3D Figurines','marquee.2':'RGB Glow Edition','marquee.3':'From Your Photo','marquee.4':'Ships Nationwide','marquee.5':'From RM79',
+    'how.label':'001 / Process','how.title':'How It<br>Works',
+    'how.step1.title':'Send Your Photo','how.step1.desc':'Any clear photo — solo, couple, family, or with a pet. After payment, simply WhatsApp us your photo and we handle the rest.','how.step1.tag':'You do this',
+    'how.step2.title':'We Sculpt in 3D','how.step2.desc':'We isolate your subject, generate the 3D model, refine it in Blender — capturing your pose, clothing, and expression.','how.step2.tag':'We do this',
+    'how.step3.title':'Receive &amp; Glow','how.step3.desc':'Printed, assembled with your chosen base, and shipped to you. Glow tier comes with full RGB app control via WLED.','how.step3.tag':'~7–14 days',
+    'gallery.label':'002 / Gallery','gallery.title':'Real<br>Results','gallery.sub':'Each figurine is sculpted from a real customer photo. Pose, body language, clothing — all captured.',
+    'gallery.cap1':'Mother &amp; Child — Snow','gallery.cap2':'Couple — Shadow','gallery.cap3':'Solo — Stone','gallery.cap4':'Family — Snow','gallery.cap5':'With Pet — Stone',
+    'colors.heading':'Three<br>Colors','colors.note':'<em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em>',
+    'pricing.label':'003 / Pricing','pricing.title':'Simple<br>Pricing',
+    'classic.tier':'Tier 01','classic.name':'Classic','classic.desc':'No LED. Pure sculpt — your figurine in print form.',
+    'size.small':'Small<small>~10cm height</small>','size.medium':'Medium<small>~18cm height</small>',
+    'classic.f1':'Made from your photo','classic.f2':'PLA print — Snow, Shadow, or Stone','classic.f3':'Flat printed base','classic.f4':'Ships in 7–14 days',
+    'glow.tier':'Tier 02','glow.desc':'Full RGB lighting + app control. The one that lights up the room.','glow.badge':'Most Popular',
+    'glow.f1':'Everything in Classic','glow.f2':'Two-part RGB LED base','glow.f3':'ESP32-C3 + WLED firmware','glow.f4':'Millions of colors via free app','glow.f5':'USB powered — no batteries','glow.f6':'Best with Snow color',
+    'addons.title':'Add-Ons','addon.person':'Extra person','addon.pet':'Pet / animal companion','addon.text':'Custom text on base',
+    'faq.label':'004 / FAQ','faq.title':'Questions',
+    'faq.q1':'How accurate will my figurine look?','faq.a1':"Your figurine clearly captures your pose, body language, clothing details, and overall likeness. It's a detailed personal sculpture — recognizable and personal, not a hyper-realistic replica. We always show real before/after examples so you know exactly what to expect before ordering.",
+    'faq.q2':'How long does production take?','faq.a2':"Estimated 7–14 days from when we receive your photo. We'll keep you updated via WhatsApp throughout the process.",
+    'faq.q3':'How does the RGB lighting work?','faq.a3':"Glow tier figurines include an LED base with an ESP32-C3 controller running open-source WLED firmware. Download the free WLED app (iOS/Android), connect to the figurine's WiFi hotspot, and control millions of colors and effects from your phone. Powered via USB — plug into any charger, power bank, or TV port.",
+    'faq.q4':'Can I have more than one person in the figurine?','faq.a4':"Yes! Multi-person figurines are one of our most popular options — couples, parent-child, and group of friends all work great. Add +RM49 per extra person. We can also add a pet companion for +RM39.",
+    'faq.q5':'What photo should I send?','faq.a5':"Best results come from well-lit photos with the full body visible (head to toe), in the pose you want captured. Avoid heavily backlit or blurry photos. We'll let you know if we need a better shot before starting.",
+    'faq.q6':'What is your refund policy?','faq.a6':"Because each figurine is made-to-order from your photo, we do not offer refunds once production has started. If there's a production defect or shipping damage, we will remake or compensate accordingly. Contact us via WhatsApp immediately if there's an issue.",
+    'order.label':'005 / Order','order.title':"Let's<br>Make Yours",'order.body':"Fill in the form and we'll confirm your order. Or just drop us a message directly on WhatsApp — we're happy to answer any questions first.",
+    'order.wa':'Chat on WhatsApp','order.note':"We accept FPX · Touch n' Go · GrabPay · Boost<br>Based in Malaysia · Ships nationwide · 7–14 day turnaround",
+    'form.name':'Your Name','form.wa':'WhatsApp Number','form.tier':'Tier','form.tier.select':'Select Tier',
+    'form.color':'Color','form.color.select':'Select Color','form.color.snow':'Snow (White) — Recommended for Glow','form.color.shadow':'Shadow (Black)','form.color.stone':'Stone (Grey)',
+    'form.extra':'Extra Persons','form.extra.none':'None — just the main subject',
+    'form.pet':'Pet / Animal','form.pet.no':'No — no pet','form.pet.yes':'Yes, add a pet (+RM39)',
+    'form.base':'Custom Base Text','form.base.no':'No custom text','form.base.yes':'Yes, engrave text on base (+RM15)',
+    'form.engrave':'Text to Engrave','form.engrave.ph':'e.g. Happy Birthday, Mama! ❤️',
+    'form.notes':'Special Requests','form.notes.ph':'Any special requests, details about the photo, or pose preferences...',
+    'form.total':'Estimated Total:','form.submit':'Submit Order via WhatsApp',
+    'footer.copy':'© 2026 3D Portrait Lab · Malaysia · All prices in RM'
+  },
+  my: {
+    'nav.process':'Proses','nav.gallery':'Galeri','nav.pricing':'Harga','nav.faq':'FAQ','nav.order':'Order Sekarang',
+    'hero.label':'Studio Figurin Custom Malaysia','hero.title.em':'Kenangan korang,','hero.title.glow':'Kini Bersinar.',
+    'hero.sub':'Kami tukar gambar korang jadi figurin 3D yang detail gila —<br><strong>gaya, ekspresi, baju</strong> — pastu bagi dia glow.',
+    'hero.cta':'Order Figurin Korang','hero.ghost':'Tengok Contoh','hero.scroll':'Scroll',
+    'marquee.1':'Figurin 3D Custom','marquee.2':'RGB Glow Edition','marquee.3':'Dari Gambar Korang','marquee.4':'Pos Seluruh Malaysia','marquee.5':'Dari RM79',
+    'how.label':'001 / Cara Kerja','how.title':'Macam Mana<br>Ia Jadi',
+    'how.step1.title':'Korang Hantar Gambar','how.step1.desc':'Gambar clear je dah cukup — sorang, couple, family, atau dengan pet. Lepas bayar, WhatsApp je gambar korang. Kami settle yang lain.','how.step1.tag':'Korang buat ni',
+    'how.step2.title':'Kami Sculpt dalam 3D','how.step2.desc':'Kami remove background, generate model 3D, pastu polish dalam Blender — gaya, baju, ekspresi semua captured.','how.step2.tag':'Kami buat ni',
+    'how.step3.title':'Dapat &amp; Terus Glow','how.step3.desc':'Siap cetak, pasang base, pastu pos ke korang. Tier Glow ada full RGB control through app WLED — free je.','how.step3.tag':'~7–14 hari',
+    'gallery.label':'002 / Galeri','gallery.title':'Hasil<br>Sebenar','gallery.sub':'Setiap figurin dibuat dari gambar customer sebenar. Gaya, body language, baju — semua ada.',
+    'gallery.cap1':'Ibu &amp; Anak — Snow','gallery.cap2':'Couple — Shadow','gallery.cap3':'Solo — Stone','gallery.cap4':'Family — Snow','gallery.cap5':'Dengan Pet — Stone',
+    'colors.heading':'Tiga<br>Warna','colors.note':'<em>Snow (putih) memang paling sesuai dengan Tier Glow — setiap warna RGB nampak lawa gila atas PLA putih.</em>',
+    'pricing.label':'003 / Harga','pricing.title':'Harga<br>Mudah',
+    'classic.tier':'Tier 01','classic.name':'Classic','classic.desc':'Takde LED. Pure sculpt je — figurin korang dalam bentuk print.',
+    'size.small':'Kecil<small>~10cm tinggi</small>','size.medium':'Sederhana<small>~18cm tinggi</small>',
+    'classic.f1':'Dibuat dari gambar korang','classic.f2':'Cetak PLA — Snow, Shadow, atau Stone','classic.f3':'Base rata bercetak','classic.f4':'Pos dalam 7–14 hari',
+    'glow.tier':'Tier 02','glow.desc':'RGB penuh + control guna app. Yang memang akan glow bilik korang.','glow.badge':'Paling Laris',
+    'glow.f1':'Semua yang ada dalam Classic','glow.f2':'Base LED RGB dua bahagian','glow.f3':'ESP32-C3 + WLED firmware','glow.f4':'Berjuta warna guna app free','glow.f5':'USB powered — takde bateri','glow.f6':'Paling lawa dengan Snow',
+    'addons.title':'Add-On','addon.person':'Orang tambahan','addon.pet':'Pet / haiwan','addon.text':'Teks custom kat base',
+    'faq.label':'004 / FAQ','faq.title':'Soalan',
+    'faq.q1':'Figurin tu akan nampak macam saya ke?','faq.a1':'Figurin korang akan clearly capture gaya, body language, baju, dan rupa keseluruhan. Ia personal sculpture yang detail — boleh cam tapi bukan hyper-realistic replica. Kami sentiasa tunjuk contoh real sebelum/selepas supaya korang tau apa nak expect sebelum order.',
+    'faq.q2':'Berapa lama nak siap?','faq.a2':'Dalam 7–14 hari dari kami terima gambar korang. Kami akan update progress through WhatsApp sepanjang proses.',
+    'faq.q3':'RGB tu macam mana nak guna?','faq.a3':"Figurin Tier Glow ada LED base dengan controller ESP32-C3 yang run firmware WLED open-source. Download app WLED free (iOS/Android), connect to hotspot WiFi figurin, pastu control berjuta warna dan effects dari phone korang. USB powered — boleh plug kat mana-mana charger, power bank, atau port TV.",
+    'faq.q4':'Boleh ada lebih dari satu orang dalam figurin?','faq.a4':'Boleh! Figurin ramai orang memang salah satu option paling popular — couple, parents-anak, kawan-kawan semua boleh. Tambah +RM49 setiap orang tambahan. Boleh tambah pet sekali untuk +RM39.',
+    'faq.q5':'Gambar macam mana yang sesuai?','faq.a5':'Gambar yang terang dengan badan penuh nampak (kepala ke kaki), dalam pose yang korang nak. Elak gambar backlit atau blur. Kami akan bagitau kalau perlu gambar yang lagi clear sebelum start.',
+    'faq.q6':'Boleh refund tak?','faq.a6':'Sebab setiap figurin dibuat custom dari gambar korang, kami tak boleh offer refund bila produksi dah start. Kalau ada defect atau rosak masa penghantaran, kami akan buat semula atau compensate. WhatsApp kami terus kalau ada apa-apa.',
+    'order.label':'005 / Order','order.title':'Jom<br>Kita Buat','order.body':'Isi borang ni dan kami confirm order korang. Atau terus WhatsApp kami — kami happy nak jawab soalan korang dulu.',
+    'order.wa':'Chat kat WhatsApp','order.note':"Kami accept FPX · Touch n' Go · GrabPay · Boost<br>Based kat Malaysia · Pos seluruh negara · Siap dalam 7–14 hari",
+    'form.name':'Nama Korang','form.wa':'Nombor WhatsApp','form.tier':'Tier','form.tier.select':'Pilih Tier',
+    'form.color':'Warna','form.color.select':'Pilih Warna','form.color.snow':'Snow (Putih) — Best untuk Glow','form.color.shadow':'Shadow (Hitam)','form.color.stone':'Stone (Kelabu)',
+    'form.extra':'Orang Tambahan','form.extra.none':'Takde — sorang je',
+    'form.pet':'Pet','form.pet.no':'Takde pet','form.pet.yes':'Ada, nak tambah pet (+RM39)',
+    'form.base':'Teks Custom kat Base','form.base.no':'Takde teks','form.base.yes':'Ada, nak ukir teks (+RM15)',
+    'form.engrave':'Teks untuk Diukir','form.engrave.ph':'cth. Selamat Hari Jadi, Mama! ❤️',
+    'form.notes':'Permintaan Lain','form.notes.ph':'Ada permintaan khas, details gambar, atau pilihan pose?',
+    'form.total':'Anggaran Total:','form.submit':'Order via WhatsApp',
+    'footer.copy':'© 2026 3D Portrait Lab · Malaysia · Semua harga dalam RM'
+  }
+};
+
+const langToggle = document.getElementById('langToggle');
+const langIcon = langToggle.querySelector('.lang-icon');
+
+function applyLang(lang) {
+  const t = TRANSLATIONS[lang];
+  document.documentElement.lang = lang === 'my' ? 'ms' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+  langIcon.textContent = lang === 'my' ? 'EN' : 'MY';
+  localStorage.setItem('lang', lang);
+}
+
+const savedLang = localStorage.getItem('lang') || 'my';
+applyLang(savedLang);
+
+langToggle.addEventListener('click', () => {
+  const current = localStorage.getItem('lang') || 'en';
+  applyLang(current === 'en' ? 'my' : 'en');
+});
 
 // =============================================
 // THEME TOGGLE
