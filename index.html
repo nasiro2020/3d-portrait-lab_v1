@@ -3342,9 +3342,11 @@ const waFabEl = document.getElementById('waFab');
 
 function updateMobileBar() {
   const hero = document.getElementById('hero');
+  const orderSection = document.getElementById('order');
   if (!hero || !mobileOrderBar) return;
-  const past = window.scrollY > hero.offsetTop + hero.offsetHeight - 120;
-  mobileOrderBar.classList.toggle('show', past);
+  const pastHero = window.scrollY > hero.offsetTop + hero.offsetHeight - 120;
+  const atOrder = orderSection && window.scrollY + window.innerHeight * 0.75 >= orderSection.offsetTop;
+  mobileOrderBar.classList.toggle('show', pastHero && !atOrder);
 }
 window.addEventListener('scroll', updateMobileBar, { passive: true });
 
