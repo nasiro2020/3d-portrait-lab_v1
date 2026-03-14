@@ -55,7 +55,8 @@ body.light .hero-title em {
   -webkit-background-clip: text;
   background-clip: text;
 }
-body.light .cursor-ring { border-color: rgba(0,0,0,0.15); }
+body.light .cursor { mix-blend-mode: multiply; }
+body.light .cursor-ring { border-color: rgba(0,0,0,0.45); }
 body.light .swatch-circle.shadow { border-color: rgba(0,0,0,0.12); }
 body.light .form-control { background: #fff; }
 body.light .pricing-card-classic { background: var(--ink3); }
@@ -539,12 +540,34 @@ nav {
 }
 .how-steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
 }
+.how-step-design {
+  background: linear-gradient(150deg, rgba(255,225,60,0.04) 0%, transparent 55%);
+  border-right-color: rgba(255,225,60,0.14);
+}
+.how-step-design:hover {
+  background: linear-gradient(150deg, rgba(255,225,60,0.07) 0%, transparent 55%) !important;
+}
+.how-step-design .step-number {
+  -webkit-text-stroke-color: rgba(255,225,60,0.18);
+  text-shadow: 3px 3px 0 rgba(255,225,60,0.06);
+}
+.how-step-design:hover .step-number {
+  color: rgba(255,225,60,0.16);
+  -webkit-text-stroke-color: rgba(255,225,60,0.35);
+  text-shadow: 3px 3px 0 rgba(255,225,60,0.1);
+}
+.step-tag-design {
+  color: var(--y);
+  background: rgba(255,225,60,0.08);
+  border-color: rgba(255,225,60,0.22);
+}
+body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,60,0.05) 0%, transparent 55%); }
 .how-step {
   padding: 3rem 2.5rem;
   border-right: 1px solid var(--border);
@@ -795,7 +818,10 @@ nav {
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
+.pricing-card .card-features { flex-grow: 1; }
 .pricing-card:hover { border-color: rgba(255,255,255,0.12); }
 .pricing-card-classic { }
 .pricing-card-glow {
@@ -959,6 +985,176 @@ nav {
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
+}
+/* ── Custom Design Add-On — Pricing add-on items ── */
+.addon-item-design {
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 1.25rem;
+  border-color: rgba(255,225,60,0.14);
+  background: linear-gradient(105deg, rgba(255,225,60,0.04) 0%, transparent 55%);
+  transition: background 0.3s, border-color 0.3s;
+}
+.addon-item-design:hover {
+  border-color: rgba(255,225,60,0.26);
+  background: linear-gradient(105deg, rgba(255,225,60,0.07) 0%, transparent 55%);
+}
+body.light .addon-item-design { border-color: rgba(180,150,0,0.18); background: linear-gradient(105deg, rgba(255,225,60,0.05) 0%, transparent 55%); }
+.addon-design-mark {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--y);
+  opacity: 0.65;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.addon-design-info { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+.addon-design-sub {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.addon-item-design .addon-price { color: var(--y); flex-shrink: 0; }
+
+/* ── How It Works — Custom Design branch callout ── */
+.how-design-callout {
+  position: relative;
+  margin-top: 2rem;
+  border: 1px solid rgba(255,225,60,0.14);
+  border-left: 3px solid rgba(255,225,60,0.6);
+  border-radius: 0 12px 12px 0;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(110deg, rgba(255,225,60,0.04) 0%, transparent 60%);
+  overflow: hidden;
+}
+.how-design-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 60%, rgba(255,225,60,0.06), transparent 55%);
+  pointer-events: none;
+}
+body.light .how-design-callout {
+  border-color: rgba(160,130,0,0.2);
+  border-left-color: rgba(160,130,0,0.55);
+  background: linear-gradient(110deg, rgba(255,225,60,0.05) 0%, transparent 60%);
+}
+.how-design-callout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+.how-design-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--y);
+}
+.how-design-badge::before { content: '↳'; font-size: 0.8rem; opacity: 0.6; }
+.how-design-price-tag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--y);
+  background: rgba(255,225,60,0.09);
+  border: 1px solid rgba(255,225,60,0.22);
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+}
+.how-design-label {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+}
+.how-design-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.how-design-step { display: flex; flex-direction: column; gap: 0.2rem; }
+.how-design-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--y);
+  opacity: 0.55;
+}
+.how-design-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text);
+  background: rgba(255,225,60,0.06);
+  border: 1px solid rgba(255,225,60,0.16);
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, border-color 0.2s;
+}
+.how-design-pill:hover { background: rgba(255,225,60,0.11); border-color: rgba(255,225,60,0.28); }
+body.light .how-design-pill { background: rgba(180,150,0,0.06); border-color: rgba(180,150,0,0.18); }
+.how-design-arrow { color: var(--y); font-size: 0.7rem; opacity: 0.4; flex-shrink: 0; }
+
+/* ── Order form — Custom Design block wrapper ── */
+.form-design-block {
+  border: 1px solid rgba(255,225,60,0.13);
+  border-left: 3px solid rgba(255,225,60,0.5);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: linear-gradient(110deg, rgba(255,225,60,0.03) 0%, transparent 60%);
+  margin-bottom: 1.25rem;
+}
+body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-color: rgba(160,130,0,0.45); background: linear-gradient(110deg, rgba(255,225,60,0.04) 0%, transparent 60%); }
+.form-design-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.form-design-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--y);
+  opacity: 0.7;
+}
+.form-design-block-label::before { content: '↳ '; }
+.form-design-block-prices {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--y);
+  opacity: 0.75;
+}
+.form-design-block .form-group { margin-bottom: 0; }
+.design-desc-reveal {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, margin-top 0.35s ease;
+  margin-top: 0;
+}
+.design-desc-reveal.open {
+  max-height: 180px;
+  opacity: 1;
+  margin-top: 1rem;
 }
 
 /* ============================================================
@@ -1173,6 +1369,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
   margin-left: 0.35rem;
   opacity: 0.85;
 }
+.addon-price-design { color: var(--y); }
 .order-total-preview {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -1579,6 +1776,261 @@ body.light .lightbox-nav:hover {
   .nav-cta { display: none; }
   .mobile-menu ul a { font-size: 1.6rem; }
 }
+
+/* ============================================================
+   HERO — modern viewport unit fix
+============================================================ */
+@supports (min-height: 100dvh) { #hero { min-height: 100dvh; } }
+
+/* ============================================================
+   PRICING — CTA button on each card
+============================================================ */
+.card-cta-btn {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+  background: rgba(255,255,255,0.04);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  cursor: none;
+}
+.card-cta-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); }
+body.light .card-cta-btn { border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.03); }
+body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.18); background: rgba(0,0,0,0.06); color: var(--text); }
+.pricing-card-glow .card-cta-btn {
+  color: var(--ink);
+  background: var(--text);
+  border-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card-glow .card-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--r), var(--p), var(--b), var(--g));
+  background-size: 300% 100%;
+  animation: rgbSlide 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pricing-card-glow .card-cta-btn:hover::before { opacity: 1; }
+.pricing-card-glow .card-cta-btn .btn-label { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+  .pricing-card-glow { order: -1; }
+}
+@media (pointer: coarse) { .card-cta-btn { cursor: pointer; } }
+
+/* ============================================================
+   COLOR SWATCHES — contextual hover previews
+============================================================ */
+.color-swatch.snow-swatch:hover .swatch-circle {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25),
+              0 0 20px 6px rgba(255,60,110,0.55),
+              0 0 40px 12px rgba(60,168,255,0.35);
+  transform: scale(1.15);
+}
+.color-swatch.shadow-swatch:hover .swatch-circle {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1),
+              0 -6px 20px rgba(255,60,110,0.55),
+              0 -12px 38px rgba(60,168,255,0.4);
+  transform: scale(1.15);
+}
+.color-swatch.stone-swatch:hover .swatch-circle {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.18),
+              0 8px 22px rgba(0,0,0,0.5),
+              inset 0 1px 0 rgba(255,255,255,0.22);
+  transform: scale(1.15);
+}
+.swatch-hint {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: transparent;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.2s;
+  margin-top: -0.15rem;
+  line-height: 1.5;
+}
+.color-swatch:hover .swatch-hint { color: var(--dim); }
+
+/* ============================================================
+   GALLERY — carousel dots & swipe hint
+============================================================ */
+.carousel-meta {
+  margin-top: 0.75rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+@media (max-width: 768px) { .carousel-meta { display: flex; } }
+.carousel-dots {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.carousel-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.25s, transform 0.25s;
+}
+.carousel-dot.active { background: var(--glow-1); transform: scale(1.5); }
+.carousel-swipe-hint {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dim);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.carousel-swipe-hint.show { opacity: 1; }
+
+/* ============================================================
+   HOW IT WORKS — mobile vertical stepper
+============================================================ */
+@media (max-width: 900px) {
+  .how-steps { position: relative; }
+  .step-number { font-size: 3.2rem; }
+}
+
+/* ============================================================
+   MOBILE MENU — staggered item reveal
+============================================================ */
+@keyframes menuItemIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-menu.open ul li {
+  opacity: 0;
+  animation: menuItemIn 0.3s ease forwards;
+}
+.mobile-menu.open ul li:nth-child(1) { animation-delay: 0.06s; }
+.mobile-menu.open ul li:nth-child(2) { animation-delay: 0.12s; }
+.mobile-menu.open ul li:nth-child(3) { animation-delay: 0.18s; }
+.mobile-menu.open ul li:nth-child(4) { animation-delay: 0.24s; }
+.mobile-menu.open .btn-glow {
+  opacity: 0;
+  animation: menuItemIn 0.3s ease forwards 0.32s;
+}
+
+/* ============================================================
+   BUTTON — touch active feedback
+============================================================ */
+.btn-glow:active, .btn-ghost:active, .wa-button:active,
+.form-submit:active, .card-cta-btn:active { transform: scale(0.97) !important; transition-duration: 0.08s !important; }
+.mob-bar-btn:active { opacity: 0.85 !important; transition-duration: 0.08s !important; }
+
+/* ============================================================
+   MOBILE — floating WhatsApp FAB
+============================================================ */
+.wa-fab {
+  display: none;
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.25rem;
+  z-index: 460;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  font-size: 1.35rem;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, opacity 0.2s;
+}
+.wa-fab.ready { opacity: 1; transform: scale(1); }
+.wa-fab.menu-active { opacity: 0 !important; transform: scale(0) !important; pointer-events: none; }
+.wa-fab:hover { box-shadow: 0 6px 28px rgba(37,211,102,0.6); transform: scale(1.07) !important; }
+.wa-fab:active { transform: scale(0.93) !important; }
+@media (pointer: coarse), (max-width: 900px) { .wa-fab { display: flex; } }
+
+/* ============================================================
+   MOBILE — sticky bottom order bar
+============================================================ */
+.mobile-order-bar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 450;
+  padding: 0.8rem 1.25rem;
+  background: rgba(6,6,14,0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transform: translateY(100%);
+  transition: transform 0.42s cubic-bezier(0.34,1.56,0.64,1);
+}
+.mobile-order-bar.show { transform: translateY(0); }
+.mobile-order-bar.menu-active { opacity: 0 !important; pointer-events: none; }
+.mob-bar-text { display: flex; flex-direction: column; gap: 0.08rem; }
+.mob-bar-from {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.mob-bar-price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  white-space: nowrap;
+}
+.mob-bar-btn {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  flex-shrink: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
+@media (pointer: coarse), (max-width: 900px) {
+  .mobile-order-bar { display: flex; }
+  .wa-fab { bottom: 5.8rem; }
+  #order { padding-bottom: 6rem; }
+  footer { padding-bottom: 5rem; }
+}
+
+/* ============================================================
+   FORM SUBMIT — 48px min touch target on mobile
+============================================================ */
+@media (max-width: 768px) {
+  .form-submit { min-height: 48px; }
+}
 </style>
 </head>
 <body>
@@ -1699,14 +2151,20 @@ body.light .lightbox-nav:hover {
         <p class="step-desc" data-i18n="how.step1.desc">Any clear photo — solo, couple, family, or with a pet. After payment, simply WhatsApp us your photo and we handle the rest.</p>
         <span class="step-tag" data-i18n="how.step1.tag">You do this</span>
       </div>
-      <div class="how-step reveal reveal-delay-2">
+      <div class="how-step how-step-design reveal reveal-delay-2">
         <div class="step-number">02</div>
+        <h3 class="step-title" data-i18n="how.design.step.title">Custom Design Edit</h3>
+        <p class="step-desc" data-i18n="how.design.step.desc">Want a different outfit, added accessories, or props that weren't in your photo? Tell us what to change — we'll Photoshop your photo and send you a preview. You approve it before we ever touch the 3D model.</p>
+        <span class="step-tag step-tag-design" data-i18n="how.design.step.tag">Add-On Only</span>
+      </div>
+      <div class="how-step reveal reveal-delay-3">
+        <div class="step-number">03</div>
         <h3 class="step-title" data-i18n="how.step2.title">We Sculpt in 3D</h3>
         <p class="step-desc" data-i18n="how.step2.desc">We isolate your subject, generate the 3D model, refine it in Blender — capturing your pose, clothing, and expression.</p>
         <span class="step-tag" data-i18n="how.step2.tag">We do this</span>
       </div>
-      <div class="how-step reveal reveal-delay-3">
-        <div class="step-number">03</div>
+      <div class="how-step reveal reveal-delay-4">
+        <div class="step-number">04</div>
         <h3 class="step-title" data-i18n="how.step3.title">Receive &amp; Glow</h3>
         <p class="step-desc" data-i18n="how.step3.desc">Printed, assembled with your chosen base, and shipped to you. Glow tier comes with full RGB app control via WLED.</p>
         <span class="step-tag" data-i18n="how.step3.tag">~7–14 days</span>
@@ -1759,6 +2217,16 @@ body.light .lightbox-nav:hover {
         </div>
       </div>
     </div>
+    <div class="carousel-meta">
+      <div class="carousel-dots" id="carouselDots">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+      </div>
+      <p class="carousel-swipe-hint" id="swipeHint">swipe to explore →</p>
+    </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1">
         <div class="gallery-badge">● Glow Tier</div>
@@ -1801,17 +2269,20 @@ body.light .lightbox-nav:hover {
   <div class="colors-inner">
     <h3 class="colors-heading reveal" data-i18n="colors.heading">Three<br>Colors</h3>
     <ul class="colors-list">
-      <li class="color-swatch reveal reveal-delay-1">
+      <li class="color-swatch snow-swatch reveal reveal-delay-1">
         <div class="swatch-circle snow"></div>
         <span class="swatch-name">Snow</span>
+        <span class="swatch-hint">Best for Glow</span>
       </li>
-      <li class="color-swatch reveal reveal-delay-2">
+      <li class="color-swatch shadow-swatch reveal reveal-delay-2">
         <div class="swatch-circle shadow"></div>
         <span class="swatch-name">Shadow</span>
+        <span class="swatch-hint">Edge-lit effect</span>
       </li>
-      <li class="color-swatch reveal reveal-delay-3">
+      <li class="color-swatch stone-swatch reveal reveal-delay-3">
         <div class="swatch-circle stone"></div>
         <span class="swatch-name">Stone</span>
+        <span class="swatch-hint">Sculpt-like finish</span>
       </li>
     </ul>
     <p class="colors-note reveal reveal-delay-4" data-i18n="colors.note"><em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em></p>
@@ -1846,6 +2317,7 @@ body.light .lightbox-nav:hover {
           <li data-i18n="classic.f3">Flat printed base</li>
           <li data-i18n="classic.f4">Ships in 7–14 days</li>
         </ul>
+        <a href="#order" class="card-cta-btn" data-tier="classic-small"><span class="btn-label">Order Classic →</span></a>
       </div>
       <div class="pricing-card pricing-card-glow reveal reveal-delay-2">
         <div class="hot-badge" data-i18n="glow.badge">Most Popular</div>
@@ -1870,6 +2342,7 @@ body.light .lightbox-nav:hover {
           <li data-i18n="glow.f5">USB powered — no batteries</li>
           <li data-i18n="glow.f6">Best with Snow color</li>
         </ul>
+        <a href="#order" class="card-cta-btn" data-tier="glow-medium"><span class="btn-label">Order Glow ✦</span></a>
       </div>
     </div>
     <div class="pricing-addons reveal reveal-delay-3">
@@ -1886,6 +2359,14 @@ body.light .lightbox-nav:hover {
         <li class="addon-item">
           <span class="addon-name" data-i18n="addon.text">Custom text on base</span>
           <span class="addon-price">+RM15</span>
+        </li>
+        <li class="addon-item addon-item-design">
+          <span class="addon-design-mark">✦ Design</span>
+          <div class="addon-design-info">
+            <span class="addon-name" data-i18n="addon.design">Custom Design Edit</span>
+            <span class="addon-design-sub" data-i18n="addon.design.sub">Reshape your look before we sculpt — swap outfit styles, add accessories, or place new props that weren't in your original photo.</span>
+          </div>
+          <span class="addon-price">+RM39–69</span>
         </li>
       </ul>
     </div>
@@ -2051,6 +2532,18 @@ body.light .lightbox-nav:hover {
           <input type="text" id="baseTextValue" name="baseTextValue" class="form-control" placeholder="e.g. Happy Birthday, Mama! ❤️" data-i18n-placeholder="form.engrave.ph" maxlength="40" />
         </div>
         <div class="form-group">
+          <label class="form-label" for="customDesign"><span data-i18n="form.design">Custom Design Edit</span> <span class="addon-price addon-price-design">+RM39–69</span></label>
+          <select id="customDesign" name="customDesign" class="form-control">
+            <option value="no" data-i18n="form.design.no">No custom design</option>
+            <option value="clothing" data-i18n="form.design.clothing">Clothing Edit (+RM39) — change outfit style</option>
+            <option value="elements" data-i18n="form.design.elements">Elements Add-On (+RM69) — add props or accessories</option>
+          </select>
+        </div>
+        <div class="design-desc-reveal" id="customDesignDescGroup">
+          <label class="form-label" for="customDesignDesc" data-i18n="form.design.desc">Describe Your Design Changes</label>
+          <textarea id="customDesignDesc" name="customDesignDesc" class="form-control" placeholder="e.g. Change outfit to formal suit, or add a guitar in his hands" data-i18n-placeholder="form.design.desc.ph"></textarea>
+        </div>
+        <div class="form-group">
           <label class="form-label" for="notes" data-i18n="form.notes">Special Requests</label>
           <textarea id="notes" name="notes" class="form-control" placeholder="Any special requests, details about the photo, or pose preferences..." data-i18n-placeholder="form.notes.ph"></textarea>
         </div>
@@ -2075,6 +2568,18 @@ body.light .lightbox-nav:hover {
     <p class="footer-copy" data-i18n="footer.copy">© 2026 3D Portrait Lab · Malaysia · All prices in RM</p>
   </div>
 </footer>
+
+<!-- Floating WhatsApp FAB -->
+<a href="https://wa.me/60XXXXXXXXX" class="wa-fab" id="waFab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- Sticky mobile bottom order bar -->
+<div class="mobile-order-bar" id="mobileOrderBar">
+  <div class="mob-bar-text">
+    <span class="mob-bar-from">Starting from</span>
+    <span class="mob-bar-price">RM79</span>
+  </div>
+  <a href="#order" class="mob-bar-btn" id="mobBarBtn">Order Now</a>
+</div>
 
 <script src="js/main.js"></script>
 <script>
@@ -2171,8 +2676,10 @@ function calcTotal() {
   const extra  = parseInt(document.getElementById('extraPersons').value) || 0;
   const pet    = document.getElementById('pet').value;
   const base   = document.getElementById('baseText').value;
+  const design = document.getElementById('customDesign').value;
   const base_price = TIER_PRICES[tier] || 0;
-  return base_price + (extra * 49) + (pet === 'yes' ? 39 : 0) + (base === 'yes' ? 15 : 0);
+  const designPrice = design === 'clothing' ? 39 : design === 'elements' ? 69 : 0;
+  return base_price + (extra * 49) + (pet === 'yes' ? 39 : 0) + (base === 'yes' ? 15 : 0) + designPrice;
 }
 
 function updateTotal() {
@@ -2186,6 +2693,18 @@ document.getElementById('baseText').addEventListener('change', function() {
   const grp = document.getElementById('baseTextInputGroup');
   grp.style.display = this.value === 'yes' ? 'block' : 'none';
   if (this.value !== 'yes') document.getElementById('baseTextValue').value = '';
+  updateTotal();
+});
+
+// Show/hide custom design description textarea (animated)
+document.getElementById('customDesign').addEventListener('change', function() {
+  const grp = document.getElementById('customDesignDescGroup');
+  if (this.value !== 'no') {
+    grp.classList.add('open');
+  } else {
+    grp.classList.remove('open');
+    document.getElementById('customDesignDesc').value = '';
+  }
   updateTotal();
 });
 
@@ -2207,6 +2726,13 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
   if (d.baseText === 'yes') {
     const txt = d.baseTextValue ? ` — "${d.baseTextValue}"` : '';
     addons.push(`Custom base text${txt} (+RM15)`);
+  }
+  if (d.customDesign === 'clothing') {
+    const desc = d.customDesignDesc ? ` — "${d.customDesignDesc}"` : '';
+    addons.push(`Custom Design: Clothing Edit${desc} (+RM39)`);
+  } else if (d.customDesign === 'elements') {
+    const desc = d.customDesignDesc ? ` — "${d.customDesignDesc}"` : '';
+    addons.push(`Custom Design: Elements Add-On${desc} (+RM69)`);
   }
 
   const tierLabel = TIER_LABELS[d.tier] || d.tier;
@@ -2334,6 +2860,18 @@ const TRANSLATIONS = {
     'glow.tier':'Tier 02','glow.desc':'Full RGB lighting + app control. The one that lights up the room.','glow.badge':'Most Popular',
     'glow.f1':'Everything in Classic','glow.f2':'Two-part RGB LED base','glow.f3':'ESP32-C3 + WLED firmware','glow.f4':'Millions of colors via free app','glow.f5':'USB powered — no batteries','glow.f6':'Best with Snow color',
     'addons.title':'Add-Ons','addon.person':'Extra person','addon.pet':'Pet / animal companion','addon.text':'Custom text on base',
+    'addon.design':'Custom Design Edit','addon.design.sub':'Reshape your look before we sculpt — swap outfit styles, add accessories, or place new props that weren\'t in your original photo.',
+    'how.design.step.title':'Custom Design Edit','how.design.step.tag':'Add-On Only',
+    'how.design.step.desc':'Want a different outfit, added accessories, or props that weren\'t in your photo? Tell us what to change — we\'ll Photoshop your photo and send you a preview. You approve it before we ever touch the 3D model.',
+    'how.design.badge':'Custom Design Edit — Add-On Only',
+    'how.design.price':'+RM39 / +RM69',
+    'how.design.label':'Added this add-on? One extra step slips in between 01 and 02 — you\'ll see and approve your edited photo before we ever touch the 3D model.',
+    'how.design.s1':'Tell us what to change','how.design.s2':'We edit your photo','how.design.s3':'You approve the preview','how.design.s4':'Then we sculpt',
+    'form.design.block.label':'Custom Design Edit',
+    'form.design':'Custom Design Edit','form.design.no':'No custom design',
+    'form.design.clothing':'Clothing Edit (+RM39) — change outfit style',
+    'form.design.elements':'Elements Add-On (+RM69) — add props or accessories',
+    'form.design.desc':'Describe Your Design Changes','form.design.desc.ph':'e.g. Change outfit to formal suit, or add a guitar in his hands',
     'faq.label':'004 / FAQ','faq.title':'Questions',
     'faq.q1':'How accurate will my figurine look?','faq.a1':"Your figurine clearly captures your pose, body language, clothing details, and overall likeness. It's a detailed personal sculpture — recognizable and personal, not a hyper-realistic replica. We always show real before/after examples so you know exactly what to expect before ordering.",
     'faq.q2':'How long does production take?','faq.a2':"Estimated 7–14 days from when we receive your photo. We'll keep you updated via WhatsApp throughout the process.",
@@ -2367,12 +2905,24 @@ const TRANSLATIONS = {
     'gallery.cap1':'Ibu &amp; Anak — Snow','gallery.cap2':'Couple — Shadow','gallery.cap3':'Solo — Stone','gallery.cap4':'Family — Snow','gallery.cap5':'Dengan Pet — Stone',
     'colors.heading':'Tiga<br>Warna','colors.note':'<em>Snow (putih) memang paling sesuai dengan Tier Glow — setiap warna RGB nampak lawa gila atas PLA putih.</em>',
     'pricing.label':'003 / Harga','pricing.title':'Harga<br>Mampu Milik',
-    'classic.tier':'Tier 01','classic.name':'Klasik','classic.desc':'Takde LED. Pure sculpt je — figurin korang dalam bentuk print.',
+    'classic.tier':'Tier 01','classic.name':'Classic','classic.desc':'Takde LED. Pure sculpt je — figurin korang dalam bentuk print.',
     'size.small':'Kecil<small>~10cm tinggi</small>','size.medium':'Sederhana<small>~18cm tinggi</small>',
     'classic.f1':'Dibuat dari gambar korang','classic.f2':'Cetak PLA — Snow, Shadow, atau Stone','classic.f3':'Base rata bercetak','classic.f4':'Pos dalam 7–14 hari',
     'glow.tier':'Tier 02','glow.desc':'RGB penuh + control guna app. Yang memang akan glow bilik korang.','glow.badge':'Paling Laris',
     'glow.f1':'Semua yang ada dalam Classic','glow.f2':'Base LED RGB dua bahagian','glow.f3':'ESP32-C3 + WLED firmware','glow.f4':'Berjuta warna guna app free','glow.f5':'USB powered — takde bateri','glow.f6':'Paling lawa dengan Snow',
     'addons.title':'Add-On','addon.person':'Orang tambahan','addon.pet':'Pet / haiwan','addon.text':'Teks custom kat base',
+    'addon.design':'Custom Design Edit','addon.design.sub':'Ubah penampilan sebelum kami sculpt — tukar gaya pakaian, tambah aksesori, atau letak props baru yang takde dalam gambar asal korang.',
+    'how.design.step.title':'Custom Design Edit','how.design.step.tag':'Add-On Sahaja',
+    'how.design.step.desc':'Nak pakaian lain, aksesori tambahan, atau props yang takde dalam gambar? Bagitau kami apa nak tukar — kami akan edit gambar korang dan hantar preview. Korang approve dulu sebelum kami mula sculpt 3D.',
+    'how.design.badge':'Custom Design Edit — Add-On Sahaja',
+    'how.design.price':'+RM39 / +RM69',
+    'how.design.label':'Dah pilih add-on ni? Satu langkah tambahan akan berlaku antara 01 dan 02 — korang akan tengok dan approve gambar yang dah diedit sebelum kami mula sculpt 3D.',
+    'how.design.s1':'Bagitau apa nak tukar','how.design.s2':'Kami edit gambar korang','how.design.s3':'Korang approve preview','how.design.s4':'Baru kami sculpt',
+    'form.design.block.label':'Custom Design Edit',
+    'form.design':'Custom Design Edit','form.design.no':'Takde custom design',
+    'form.design.clothing':'Edit Pakaian (+RM39) — tukar gaya pakaian',
+    'form.design.elements':'Tambah Elemen (+RM69) — tambah props atau aksesori',
+    'form.design.desc':'Huraikan Perubahan Design','form.design.desc.ph':'cth. Tukar baju kepada formal suit, atau tambah gitar dalam tangan dia',
     'faq.label':'004 / FAQ','faq.title':'Soalan Lazim',
     'faq.q1':'Figurin tu akan nampak macam saya ke?','faq.a1':'Figurin korang akan clearly capture gaya, body language, baju, dan rupa keseluruhan. Ia personal sculpture yang detail — boleh cam tapi bukan hyper-realistic replica. Kami sentiasa tunjuk contoh real sebelum/selepas supaya korang tau apa nak expect sebelum order.',
     'faq.q2':'Berapa lama nak siap?','faq.a2':'Dalam 7–14 hari dari kami terima gambar korang. Kami akan update progress through WhatsApp sepanjang proses.',
@@ -2444,6 +2994,91 @@ applyTheme(savedTheme);
 themeToggle.addEventListener('click', () => {
   applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
 });
+
+// =============================================
+// MOUSE PARALLAX ON HERO ORBS
+// =============================================
+const heroOrb1 = document.querySelector('.hero-orb-1');
+const heroOrb2 = document.querySelector('.hero-orb-2');
+const heroOrb3 = document.querySelector('.hero-orb-3');
+let orbMX = 0, orbMY = 0, orbLX = 0, orbLY = 0;
+
+document.addEventListener('mousemove', e => {
+  orbMX = (e.clientX / window.innerWidth - 0.5) * 2;
+  orbMY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+(function lerpOrbs() {
+  orbLX += (orbMX - orbLX) * 0.045;
+  orbLY += (orbMY - orbLY) * 0.045;
+  if (heroOrb1) { heroOrb1.style.marginLeft = (orbLX * 38) + 'px'; heroOrb1.style.marginTop = (orbLY * 26) + 'px'; }
+  if (heroOrb2) { heroOrb2.style.marginLeft = (-orbLX * 58) + 'px'; heroOrb2.style.marginTop = (-orbLY * 38) + 'px'; }
+  if (heroOrb3) { heroOrb3.style.marginLeft = (orbLX * 22) + 'px'; heroOrb3.style.marginTop = (-orbLY * 44) + 'px'; }
+  requestAnimationFrame(lerpOrbs);
+})();
+
+// =============================================
+// PRICING CTA — pre-select tier in order form
+// =============================================
+document.querySelectorAll('.card-cta-btn[data-tier]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tierSel = document.getElementById('tier');
+    if (tierSel) { tierSel.value = btn.dataset.tier; updateTotal(); }
+  });
+});
+
+// =============================================
+// GALLERY CAROUSEL DOTS
+// =============================================
+const carousel = document.getElementById('galleryCarousel');
+const dots = document.querySelectorAll('.carousel-dot');
+const swipeHint = document.getElementById('swipeHint');
+
+if (carousel && dots.length) {
+  setTimeout(() => {
+    if (swipeHint) {
+      swipeHint.classList.add('show');
+      setTimeout(() => swipeHint.classList.remove('show'), 2600);
+    }
+  }, 1200);
+
+  carousel.addEventListener('scroll', () => {
+    const item = carousel.querySelector('.gallery-carousel-item');
+    if (!item) return;
+    const itemW = item.offsetWidth + 12;
+    const idx = Math.min(Math.round(carousel.scrollLeft / itemW), dots.length - 1);
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }, { passive: true });
+}
+
+// =============================================
+// MOBILE ORDER BAR — reveal past hero
+// =============================================
+const mobileOrderBar = document.getElementById('mobileOrderBar');
+const waFabEl = document.getElementById('waFab');
+
+function updateMobileBar() {
+  const hero = document.getElementById('hero');
+  if (!hero || !mobileOrderBar) return;
+  const past = window.scrollY > hero.offsetTop + hero.offsetHeight - 120;
+  mobileOrderBar.classList.toggle('show', past);
+}
+window.addEventListener('scroll', updateMobileBar, { passive: true });
+
+// Show WA FAB after brief delay
+setTimeout(() => { if (waFabEl) waFabEl.classList.add('ready'); }, 1400);
+
+// =============================================
+// MOBILE MENU — hide FAB/bar while open
+// =============================================
+const mobileMenuEl = document.getElementById('mobileMenu');
+if (mobileMenuEl) {
+  new MutationObserver(() => {
+    const open = mobileMenuEl.classList.contains('open');
+    if (waFabEl) waFabEl.classList.toggle('menu-active', open);
+    if (mobileOrderBar) mobileOrderBar.classList.toggle('menu-active', open);
+  }).observe(mobileMenuEl, { attributes: true, attributeFilter: ['class'] });
+}
 </script>
 </body>
 </html>
