@@ -2254,37 +2254,37 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
       <div class="gallery-carousel-item" data-index="0">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/1.webp" data-full="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="1">
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/2.webp" data-full="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="2">
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/3.webp" data-full="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="3">
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/4.webp" data-full="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="4">
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/5.webp" data-full="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="5">
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/6.webp" data-full="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="6">
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/7.webp" data-full="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
     </div>
@@ -2304,43 +2304,43 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
       <div class="gallery-item reveal reveal-delay-1">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/1.webp" data-full="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/2.webp" data-full="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/3.webp" data-full="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/4.webp" data-full="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/5.webp" data-full="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/6.webp" data-full="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
         <div class="gallery-badge green">● Classic</div>
         <div class="gallery-img-wrap">
-          <img src="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
+          <img src="assets/images/Classic/thumbs/7.webp" data-full="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
     </div>
@@ -2873,6 +2873,8 @@ function showLightbox(index) {
   clone.style.cursor = 'default';
   // Clear previous content except the close button
   Array.from(lightboxContent.children).forEach(c => { if (c !== lightboxClose) c.remove(); });
+  // Swap thumbnail src to full-res for lightbox
+  clone.querySelectorAll('img[data-full]').forEach(img => { img.src = img.dataset.full; });
   lightboxContent.appendChild(clone);
   lightboxOverlay.classList.add('active');
   document.body.style.overflow = 'hidden';
