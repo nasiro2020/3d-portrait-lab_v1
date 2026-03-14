@@ -75,9 +75,6 @@ body.light .how-step:hover .step-number { color: rgba(0,0,0,0.18); -webkit-text-
 body.light .pricing-addons { background: #fff; }
 /* Light mode — dark amber for all yellow elements */
 body.light .step-tag-design { color: #b38600; background: rgba(179,134,0,0.08); border-color: rgba(179,134,0,0.22); }
-body.light .addon-item-design { border-color: rgba(179,134,0,0.2); }
-body.light .addon-design-mark,
-body.light .addon-item-design .addon-price,
 body.light .how-design-badge,
 body.light .how-design-arrow,
 body.light .how-design-step-num,
@@ -1108,7 +1105,7 @@ body.light .gallery-color-badge.stone {
 }
 .addons-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   list-style: none;
 }
@@ -1132,39 +1129,6 @@ body.light .gallery-color-badge.stone {
   font-size: 1rem;
   color: var(--text);
 }
-/* ── Custom Design Add-On — Pricing add-on items ── */
-.addon-item-design {
-  grid-column: 1 / -1;
-  align-items: center;
-  gap: 1.25rem;
-  border-color: rgba(255,225,60,0.14);
-  background: linear-gradient(105deg, rgba(255,225,60,0.04) 0%, transparent 55%);
-  transition: background 0.3s, border-color 0.3s;
-}
-.addon-item-design:hover {
-  border-color: rgba(255,225,60,0.26);
-  background: linear-gradient(105deg, rgba(255,225,60,0.07) 0%, transparent 55%);
-}
-body.light .addon-item-design { border-color: rgba(180,150,0,0.18); background: linear-gradient(105deg, rgba(255,225,60,0.05) 0%, transparent 55%); }
-.addon-design-mark {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--y);
-  opacity: 0.65;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.addon-design-info { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
-.addon-design-sub {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.45;
-}
-.addon-item-design .addon-price { color: var(--y); flex-shrink: 0; }
 
 /* ── How It Works — Custom Design branch callout ── */
 .how-design-callout {
@@ -1437,6 +1401,69 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   color: var(--dim);
   line-height: 1.8;
 }
+
+/* Order form box — rotating gradient border */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes borderSpin {
+  to { --border-angle: 360deg; }
+}
+@keyframes orderFormGlow {
+  0%, 100% { box-shadow: 0 0 50px rgba(255,60,110,0.14), 0 28px 70px rgba(0,0,0,0.55); }
+  33%       { box-shadow: 0 0 50px rgba(192,60,255,0.2),  0 28px 70px rgba(0,0,0,0.55); }
+  66%       { box-shadow: 0 0 50px rgba(60,168,255,0.14), 0 28px 70px rgba(0,0,0,0.55); }
+}
+.order-right {
+  background: #e8e6f0;
+  border: none;
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  animation: orderFormGlow 4s ease-in-out infinite;
+}
+.order-right::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: conic-gradient(from var(--border-angle), var(--r), var(--p), var(--b), var(--g), var(--r));
+  animation: borderSpin 4s linear infinite;
+  z-index: -1;
+}
+body.light .order-right { background: #fff; }
+body.light .order-right::before { opacity: 0.7; }
+
+/* Scoped form overrides — white card, black inputs */
+.order-right .form-label {
+  color: rgba(6,6,14,0.5);
+}
+.order-right .form-control {
+  background: #06060e;
+  border-color: rgba(255,255,255,0.08);
+  color: #e8e6f0;
+}
+.order-right .form-control::placeholder { color: rgba(232,230,240,0.28); }
+.order-right .form-control:focus {
+  border-color: rgba(192,60,255,0.5);
+  box-shadow: 0 0 0 3px rgba(192,60,255,0.1);
+}
+.order-right select.form-control option { background: #06060e; color: #e8e6f0; }
+.order-right .form-submit {
+  background: #06060e;
+  color: #f0edf8;
+  border-color: transparent;
+}
+.order-right .form-submit:hover { border-color: rgba(255,255,255,0.18); }
+.order-right .order-total-preview {
+  background: #06060e;
+  border-color: rgba(255,255,255,0.08);
+  color: rgba(232,230,240,0.45);
+}
+.order-right .order-total-preview #orderTotalAmt { color: #e8e6f0; }
+.order-right .addon-price { color: var(--p); }
 
 /* Form */
 .order-form {
@@ -2572,12 +2599,8 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
           <span class="addon-name" data-i18n="addon.text">Custom text on base</span>
           <span class="addon-price">+RM15</span>
         </li>
-        <li class="addon-item addon-item-design">
-          <span class="addon-design-mark">✦ Design</span>
-          <div class="addon-design-info">
-            <span class="addon-name" data-i18n="addon.design">Custom Design Edit</span>
-            <span class="addon-design-sub" data-i18n="addon.design.sub">Reshape your look before we sculpt — swap outfit styles, add accessories, or place new props that weren't in your original photo.</span>
-          </div>
+        <li class="addon-item">
+          <span class="addon-name" data-i18n="addon.design">Custom Design Edit</span>
           <span class="addon-price">+RM39–69</span>
         </li>
       </ul>
