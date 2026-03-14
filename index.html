@@ -66,10 +66,25 @@ body.light .gallery-item { background: var(--surface); }
 body.light .gallery-item:nth-child(1) { background: var(--ink3); }
 body.light .marquee-wrap { background: rgba(0,0,0,0.02); }
 body.light .how-step { background: var(--ink); }
+body.light .step-tag { color: #12b358; background: rgba(18,179,88,0.08); border-color: rgba(18,179,88,0.2); }
+body.light .gallery-badge.green { color: #12b358; background: rgba(18,179,88,0.08); border-color: rgba(18,179,88,0.2); }
+body.light .pricing-card-glow .card-features li::before { background: #12b358; }
 body.light .how-step:hover { background: rgba(0,0,0,0.02); }
 body.light .step-number { color: rgba(0,0,0,0.12); -webkit-text-stroke: 1px rgba(0,0,0,0.25); text-shadow: 3px 3px 0 rgba(0,0,0,0.06); }
 body.light .how-step:hover .step-number { color: rgba(0,0,0,0.18); -webkit-text-stroke: 1px rgba(0,0,0,0.4); }
 body.light .pricing-addons { background: #fff; }
+/* Light mode — dark amber for all yellow elements */
+body.light .step-tag-design { color: #b38600; background: rgba(179,134,0,0.08); border-color: rgba(179,134,0,0.22); }
+body.light .addon-item-design { border-color: rgba(179,134,0,0.2); }
+body.light .addon-design-mark,
+body.light .addon-item-design .addon-price,
+body.light .how-design-badge,
+body.light .how-design-arrow,
+body.light .how-design-step-num,
+body.light .form-design-block-label,
+body.light .form-design-block-prices,
+body.light .addon-price-design { color: #b38600; }
+body.light .how-design-price-tag { color: #b38600; background: rgba(179,134,0,0.08); border-color: rgba(179,134,0,0.2); }
 body.light .faq-item.open { border-color: rgba(0,0,0,0.15); }
 
 /* ============================================================
@@ -573,7 +588,10 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
   border-right: 1px solid var(--border);
   position: relative;
   transition: background 0.3s;
+  display: flex;
+  flex-direction: column;
 }
+.how-step .step-desc { flex-grow: 1; }
 .how-step:last-child { border-right: none; }
 .how-step:hover { background: rgba(255,255,255,0.02); }
 .step-number {
@@ -654,16 +672,29 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
 }
 .gallery-item {
   border-radius: 8px;
-  overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
   position: relative;
   cursor: none;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: border-color 0.6s ease;
 }
-.gallery-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 9px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  animation: galleryHoverGlow 2s ease-in-out infinite;
+  z-index: 1;
+}
+.gallery-item:hover::before { opacity: 1; }
+.gallery-item:hover { border-color: transparent; }
+@keyframes galleryHoverGlow {
+  0%, 100% { box-shadow: 0 0 25px rgba(255,60,110,0.4), 0 0 55px rgba(255,60,110,0.18); }
+  33%  { box-shadow: 0 0 25px rgba(192,60,255,0.4), 0 0 55px rgba(192,60,255,0.18); }
+  66%  { box-shadow: 0 0 25px rgba(60,168,255,0.4), 0 0 55px rgba(60,168,255,0.18); }
 }
 .gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
 .gallery-item:nth-child(2) { grid-column: span 4; }
@@ -1806,6 +1837,7 @@ body.light .lightbox-nav:hover {
 }
 .card-cta-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); }
 body.light .card-cta-btn { border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.03); }
+body.light .pricing-card-glow .card-cta-btn { background: var(--text); color: var(--ink); border-color: transparent; }
 body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.18); background: rgba(0,0,0,0.06); color: var(--text); }
 .pricing-card-glow .card-cta-btn {
   color: var(--ink);
