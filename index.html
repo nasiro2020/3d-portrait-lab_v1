@@ -701,6 +701,34 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
 .gallery-item:nth-child(3) { grid-column: span 3; }
 .gallery-item:nth-child(4) { grid-column: span 4; }
 .gallery-item:nth-child(5) { grid-column: span 3; }
+.gallery-item:nth-child(6) { grid-column: span 6; }
+.gallery-item:nth-child(7) { grid-column: span 6; }
+
+/* Gallery image wrapper */
+.gallery-img-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 7px;
+  position: relative;
+  aspect-ratio: 3/4;
+}
+.gallery-item:nth-child(1) .gallery-img-wrap { aspect-ratio: unset; min-height: 360px; }
+.gallery-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery-img-wrap .gallery-caption {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.85rem;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
 
 /* Placeholder figurine silhouette */
 .gallery-placeholder {
@@ -2217,35 +2245,39 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
     </div>
     <div class="gallery-carousel" id="galleryCarousel">
       <div class="gallery-carousel-item" data-index="0">
-        <div class="gallery-badge">● Glow Tier</div>
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap1">Mother &amp; Child — Snow</span>
+        <div class="gallery-badge green">● Classic</div>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="1">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap2">Couple — Shadow</span>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="2">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap3">Solo — Stone</span>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="3">
-        <div class="gallery-badge green">● Classic</div>
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap4">Family — Snow</span>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="4">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap5">With Pet — Stone</span>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-carousel-item" data-index="5">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-carousel-item" data-index="6">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
     </div>
@@ -2256,40 +2288,53 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
         <div class="carousel-dot"></div>
         <div class="carousel-dot"></div>
         <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
       </div>
       <p class="carousel-swipe-hint" id="swipeHint">swipe to explore →</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1">
-        <div class="gallery-badge">● Glow Tier</div>
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap1">Mother &amp; Child — Snow</span>
-        </div>
-      </div>
-      <div class="gallery-item reveal reveal-delay-2">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap2">Couple — Shadow</span>
-        </div>
-      </div>
-      <div class="gallery-item reveal reveal-delay-3">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap3">Solo — Stone</span>
-        </div>
-      </div>
-      <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-badge green">● Classic</div>
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap4">Family — Snow</span>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
-        <div class="gallery-placeholder">
-          <div class="figurine-icon"></div>
-          <span class="gallery-caption" data-i18n="gallery.cap5">With Pet — Stone</span>
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <div class="gallery-img-wrap">
+          <img src="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
+          <span class="gallery-caption">Classic</span>
         </div>
       </div>
     </div>
