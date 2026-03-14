@@ -2281,7 +2281,7 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
       <span class="lang-icon">EN</span>
     </button>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <span class="theme-icon">☀</span>
+      <span class="theme-icon">☀&#xFE0E;</span>
     </button>
     <a href="#order" class="nav-cta" data-i18n="nav.order">Order Now</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
@@ -3257,10 +3257,10 @@ const themeIcon = themeToggle.querySelector('.theme-icon');
 function applyTheme(mode) {
   if (mode === 'light') {
     document.body.classList.add('light');
-    themeIcon.textContent = '☽';
+    themeIcon.textContent = '☽\uFE0E';
   } else {
     document.body.classList.remove('light');
-    themeIcon.textContent = '☀';
+    themeIcon.textContent = '☀\uFE0E';
   }
   localStorage.setItem('theme', mode);
   updateNavBg();
