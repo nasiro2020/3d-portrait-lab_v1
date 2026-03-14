@@ -1448,8 +1448,34 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   position: relative;
   z-index: 2;
 }
-body.light .order-right::after { background: #fff; }
+body.light .order-right::after { background: #edeae4; }
 body.light .order-right::before { opacity: 0.7; }
+
+/* Light mode scoped form overrides — warm beige card, soft inputs */
+body.light .order-right .form-label { color: #706d80; }
+body.light .order-right .form-control {
+  background: #f5f3ef;
+  border-color: rgba(0,0,0,0.1);
+  color: #18161f;
+}
+body.light .order-right .form-control::placeholder { color: rgba(24,22,31,0.32); }
+body.light .order-right .form-control:focus {
+  border-color: rgba(160,60,220,0.45);
+  box-shadow: 0 0 0 3px rgba(160,60,220,0.08);
+}
+body.light .order-right select.form-control option { background: #f5f3ef; color: #18161f; }
+body.light .order-right .form-submit {
+  background: #18161f;
+  color: #f5f3ef;
+  border-color: transparent;
+}
+body.light .order-right .form-submit:hover { border-color: rgba(0,0,0,0.2); }
+body.light .order-right .order-total-preview {
+  background: #f5f3ef;
+  border-color: rgba(0,0,0,0.08);
+  color: rgba(24,22,31,0.45);
+}
+body.light .order-right .order-total-preview #orderTotalAmt { color: #18161f; }
 
 /* Scoped form overrides — dark card */
 .order-right .form-label {
