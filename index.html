@@ -776,9 +776,15 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
   33% { box-shadow: 0 0 30px rgba(60,168,255,0.15), inset 0 0 60px rgba(60,168,255,0.05); }
   66% { box-shadow: 0 0 30px rgba(60,255,160,0.1), inset 0 0 60px rgba(60,255,160,0.03); }
 }
-.gallery-badge {
+.gallery-badge-group {
   position: absolute;
   top: 1rem; left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  z-index: 2;
+}
+.gallery-badge {
   font-family: var(--font-mono);
   font-size: 0.55rem;
   letter-spacing: 0.16em;
@@ -788,7 +794,6 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
   display: inline-flex;
   align-items: center;
   gap: 0.42rem;
-  z-index: 2;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -810,11 +815,8 @@ body.light .gallery-badge.green .gallery-color-swatch {
   background: #12b358;
   box-shadow: 0 0 4px rgba(18,179,88,0.4);
 }
-/* Color badges — top-right, material-specimen style */
+/* Color badges — inline beside Classic badge */
 .gallery-color-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   font-family: var(--font-mono);
   font-size: 0.55rem;
   letter-spacing: 0.16em;
@@ -2331,50 +2333,64 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
     </div>
     <div class="gallery-carousel" id="galleryCarousel">
       <div class="gallery-carousel-item" data-index="0">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/1.webp" data-full="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="1">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/2.webp" data-full="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="2">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/3.webp" data-full="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="3">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/4.webp" data-full="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="4">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/5.webp" data-full="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="5">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/6.webp" data-full="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-carousel-item" data-index="6">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/7.webp" data-full="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
         </div>
@@ -2394,50 +2410,64 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/1.webp" data-full="assets/images/Classic/1.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/2.webp" data-full="assets/images/Classic/2.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/3.webp" data-full="assets/images/Classic/3.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/4.webp" data-full="assets/images/Classic/4.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge stone"><span class="gallery-color-swatch"></span>Stone</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/5.webp" data-full="assets/images/Classic/5.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge shadow"><span class="gallery-color-swatch"></span>Shadow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/6.webp" data-full="assets/images/Classic/6.png" alt="Classic Figurine" loading="lazy">
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
-        <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
-        <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        <div class="gallery-badge-group">
+          <div class="gallery-badge green"><span class="gallery-color-swatch"></span>Classic</div>
+          <div class="gallery-color-badge snow"><span class="gallery-color-swatch"></span>Snow</div>
+        </div>
         <div class="gallery-img-wrap">
           <img src="assets/images/Classic/thumbs/7.webp" data-full="assets/images/Classic/7.png" alt="Classic Figurine" loading="lazy">
         </div>
