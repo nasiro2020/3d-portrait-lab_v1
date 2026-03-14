@@ -110,6 +110,9 @@ body.light .faq-item.open { border-color: rgba(0,0,0,0.15); }
   transform: rotate(20deg);
 }
 body.light .theme-toggle:hover, body.light .lang-toggle:hover { border-color: rgba(0,0,0,0.2); }
+@media (hover: none) {
+  .theme-toggle:hover, .lang-toggle:hover { transform: none; }
+}
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
