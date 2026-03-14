@@ -237,13 +237,28 @@ nav {
   background: var(--text);
   padding: 0.55rem 1.4rem;
   border-radius: 8px;
+  border: 1px solid transparent;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
   white-space: nowrap;
   text-align: center;
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
 }
-.nav-cta:hover { opacity: 0.85; }
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--r), var(--p), var(--b), var(--g));
+  background-size: 300% 100%;
+  animation: rgbSlide 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.nav-cta:hover::before { opacity: 1; }
+.nav-cta:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.25); }
 
 /* ============================================================
    HERO
@@ -2292,7 +2307,7 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
       <span class="theme-icon">☀&#xFE0E;</span>
     </button>
-    <a href="#order" class="nav-cta" data-i18n="nav.order">Order Now</a>
+    <a href="#order" class="nav-cta"><span data-i18n="nav.order" style="position:relative;z-index:1;">Order Now</span></a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
