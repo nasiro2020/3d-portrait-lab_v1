@@ -1434,13 +1434,13 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   animation: borderSpin 4s linear infinite;
   z-index: 0;
 }
-/* Solid fill — covers interior exactly, leaving 2px gradient border visible */
+/* Solid fill — covers interior exactly, leaving 4px gradient border visible */
 .order-right::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  background: #e8e6f0;
+  background: #13132a;
   z-index: 1;
 }
 /* Form content sits above the fill layer */
@@ -1451,9 +1451,9 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
 body.light .order-right::after { background: #fff; }
 body.light .order-right::before { opacity: 0.7; }
 
-/* Scoped form overrides — white card, black inputs */
+/* Scoped form overrides — dark card */
 .order-right .form-label {
-  color: rgba(6,6,14,0.5);
+  color: #7a7890;
 }
 .order-right .form-control {
   background: #06060e;
