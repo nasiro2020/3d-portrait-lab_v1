@@ -19,7 +19,7 @@
   --border: rgba(255,255,255,0.07);
   --text: #e8e6f0;
   --muted: #7a7890;
-  --dim: #3a3860;
+  --dim: #5a5878;
 
   --r: #ff3c6e;
   --g: #3cffa0;
@@ -59,20 +59,23 @@ body.light .cursor { mix-blend-mode: multiply; }
 body.light .cursor-ring { border-color: rgba(0,0,0,0.45); }
 body.light .swatch-circle.shadow { border-color: rgba(0,0,0,0.12); }
 body.light .form-control { background: #fff; }
-body.light .pricing-card-classic { background: var(--ink3); }
+body.light .pricing-card-classic { background: #FDFCFB; }
 body.light .pricing-card-glow { background: #fff; }
-body.light .addon-item { background: var(--ink); }
+body.light .addon-item { background: #FDFCFB; }
 body.light .gallery-item { background: var(--surface); }
 body.light .gallery-item:nth-child(1) { background: var(--ink3); }
 body.light .marquee-wrap { background: rgba(0,0,0,0.02); }
 body.light .how-step { background: var(--ink); }
+body.light .how-step:hover { border-color: rgba(0,0,0,0.18); }
+body.light .step-icon { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+body.light .step-icon-inline * { stroke: rgba(0,0,0,0.72); }
+body.light .how-step:hover .step-icon-inline * { stroke: rgba(0,0,0,0.92); }
 body.light .step-tag { color: #12b358; background: rgba(18,179,88,0.08); border-color: rgba(18,179,88,0.2); }
 
 body.light .pricing-card-glow .card-features li::before { background: #12b358; }
-body.light .how-step:hover { background: rgba(0,0,0,0.02); }
-body.light .step-number { color: rgba(0,0,0,0.12); -webkit-text-stroke: 1px rgba(0,0,0,0.25); text-shadow: 3px 3px 0 rgba(0,0,0,0.06); }
-body.light .how-step:hover .step-number { color: rgba(0,0,0,0.18); -webkit-text-stroke: 1px rgba(0,0,0,0.4); }
-body.light .pricing-addons { background: #fff; }
+body.light .step-number { color: rgba(0,0,0,0.07); -webkit-text-stroke: 1px rgba(0,0,0,0.14); text-shadow: none; }
+body.light .how-step:hover .step-number { color: rgba(0,0,0,0.12); -webkit-text-stroke: 1px rgba(0,0,0,0.25); }
+body.light .pricing-addons { background: #F5F3EF; }
 /* Light mode — dark amber for all yellow elements */
 body.light .step-tag-design { color: #b38600; background: rgba(179,134,0,0.08); border-color: rgba(179,134,0,0.22); }
 body.light .how-design-badge,
@@ -83,6 +86,7 @@ body.light .form-design-block-prices,
 body.light .addon-price-design { color: #b38600; }
 body.light .how-design-price-tag { color: #b38600; background: rgba(179,134,0,0.08); border-color: rgba(179,134,0,0.2); }
 body.light .faq-item.open { border-color: rgba(0,0,0,0.15); }
+body.light .faq-answer-inner { color: rgba(24,22,31,0.72); }
 
 /* ============================================================
    THEME TOGGLE
@@ -233,11 +237,10 @@ nav {
   color: var(--ink);
   background: var(--text);
   padding: 0.55rem 1.4rem;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   transition: opacity 0.2s;
   white-space: nowrap;
-  min-width: 10rem;
   text-align: center;
   display: inline-block;
 }
@@ -370,7 +373,7 @@ nav {
   color: var(--ink);
   background: var(--text);
   padding: 0.9rem 2.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   border: 1px solid transparent;
   cursor: none;
@@ -400,7 +403,7 @@ nav {
   color: var(--muted);
   background: transparent;
   padding: 0.9rem 2.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   border: 1px solid var(--border);
   cursor: none;
@@ -433,7 +436,7 @@ nav {
 }
 .scroll-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--dim);
@@ -557,76 +560,79 @@ nav {
 .how-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 1px solid var(--border);
+  gap: 1.5rem;
+}
+.how-step {
+  padding: 2.5rem 2rem;
   border-radius: 12px;
-  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--ink3);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s;
 }
-.how-step-design {
-  background: linear-gradient(150deg, rgba(255,225,60,0.04) 0%, transparent 55%);
-  border-right-color: rgba(255,225,60,0.14);
+.how-step:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); }
+/* Number + icon row — icon floats beside the number, tilted for energy */
+.step-numrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
 }
-.how-step-design:hover {
-  background: linear-gradient(150deg, rgba(255,225,60,0.07) 0%, transparent 55%) !important;
+.step-icon-inline {
+  width: 3.8rem;
+  height: 3.8rem;
+  flex-shrink: 0;
+  transform: rotate(0deg);
+  overflow: visible;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.how-step-design .step-number {
-  -webkit-text-stroke-color: rgba(255,225,60,0.18);
-  text-shadow: 3px 3px 0 rgba(255,225,60,0.06);
+.step-icon-inline * {
+  stroke: rgba(255, 255, 255, 0.8);
 }
-.how-step-design:hover .step-number {
-  color: rgba(255,225,60,0.16);
-  -webkit-text-stroke-color: rgba(255,225,60,0.35);
-  text-shadow: 3px 3px 0 rgba(255,225,60,0.1);
+.how-step:hover .step-icon-inline {
+  transform: rotate(14deg);
+}
+.how-step:hover .step-icon-inline * {
+  stroke: url(#ig1);
 }
 .step-tag-design {
   color: var(--y);
   background: rgba(255,225,60,0.08);
   border-color: rgba(255,225,60,0.22);
 }
-body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,60,0.05) 0%, transparent 55%); }
-.how-step {
-  padding: 3rem 2.5rem;
-  border-right: 1px solid var(--border);
-  position: relative;
-  transition: background 0.3s;
-  display: flex;
-  flex-direction: column;
-}
-.how-step .step-desc { flex-grow: 1; }
-.how-step:last-child { border-right: none; }
-.how-step:hover { background: rgba(255,255,255,0.02); }
 .step-number {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 5rem;
+  font-size: 4.5rem;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: rgba(255,255,255,0.12);
-  -webkit-text-stroke: 1px var(--border);
-  text-shadow: 3px 3px 0 rgba(255,255,255,0.08);
-  margin-bottom: 1.5rem;
-  transition: color 0.3s, -webkit-text-stroke 0.3s, text-shadow 0.3s;
+  color: rgba(255,255,255,0.08);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+  text-shadow: 3px 3px 0 rgba(255,255,255,0.05);
+  transition: color 0.3s, -webkit-text-stroke-color 0.3s;
 }
 .how-step:hover .step-number {
-  color: rgba(255,255,255,0.18);
-  -webkit-text-stroke: 1px rgba(255,255,255,0.35);
-  text-shadow: 3px 3px 0 rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.14);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.28);
 }
 .step-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   letter-spacing: 0.02em;
   margin-bottom: 0.75rem;
 }
 .step-desc {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--muted);
   line-height: 1.6;
+  flex-grow: 1;
 }
 .step-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-self: flex-start;
   margin-top: 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -647,14 +653,14 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
   background: var(--ink);
 }
 .gallery-inner {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 .gallery-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 3rem;
+  margin-bottom: 1.75rem;
   flex-wrap: wrap;
   gap: 1.5rem;
 }
@@ -667,23 +673,24 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
 }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 290px;
+  gap: 0.75rem;
 }
 .gallery-item {
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--surface);
   border: 1px solid var(--border);
   position: relative;
   cursor: none;
-  transition: border-color 0.6s ease;
+  overflow: hidden;
+  transition: border-color 0.6s ease, transform 0.3s ease;
 }
 .gallery-item::before {
   content: '';
   position: absolute;
   inset: -1px;
-  border-radius: 9px;
+  border-radius: 13px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -691,35 +698,35 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
   z-index: 1;
 }
 .gallery-item:hover::before { opacity: 1; }
-.gallery-item:hover { border-color: transparent; }
+.gallery-item:hover { border-color: transparent; transform: scale(1.015); }
 @keyframes galleryHoverGlow {
   0%, 100% { box-shadow: 0 0 25px rgba(255,60,110,0.4), 0 0 55px rgba(255,60,110,0.18); }
   33%  { box-shadow: 0 0 25px rgba(192,60,255,0.4), 0 0 55px rgba(192,60,255,0.18); }
   66%  { box-shadow: 0 0 25px rgba(60,168,255,0.4), 0 0 55px rgba(60,168,255,0.18); }
 }
-.gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
-.gallery-item:nth-child(2) { grid-column: span 4; }
-.gallery-item:nth-child(3) { grid-column: span 3; }
-.gallery-item:nth-child(4) { grid-column: span 4; }
-.gallery-item:nth-child(5) { grid-column: span 3; }
-.gallery-item:nth-child(6) { grid-column: span 6; }
-.gallery-item:nth-child(7) { grid-column: span 6; }
+/* Row 1: feature item (wide) + 2 portrait items */
+.gallery-item:nth-child(1) { grid-column: span 2; }
+/* Row 2: 4 equal portrait items */
+/* items 4–7 default to span 1 — no override needed */
 
-/* Gallery image wrapper */
+/* Gallery image wrapper — height driven by grid-auto-rows, no aspect-ratio needed */
 .gallery-img-wrap {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 7px;
+  border-radius: 11px;
   position: relative;
-  aspect-ratio: 3/4;
 }
-.gallery-item:nth-child(1) .gallery-img-wrap { aspect-ratio: unset; min-height: 360px; }
 .gallery-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   display: block;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover .gallery-img-wrap img {
+  transform: scale(1.06);
 }
 .gallery-img-wrap .gallery-caption {
   position: absolute;
@@ -787,7 +794,7 @@ body.light .how-step-design { background: linear-gradient(150deg, rgba(255,225,6
 }
 .gallery-badge {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   padding: 0.28rem 0.55rem 0.28rem 0.38rem;
@@ -819,7 +826,7 @@ body.light .gallery-badge.green .gallery-color-swatch {
 /* Color badges — inline beside Classic badge */
 .gallery-color-badge {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   padding: 0.28rem 0.55rem 0.28rem 0.38rem;
@@ -880,7 +887,7 @@ body.light .gallery-color-badge.stone {
 }
 .gallery-caption {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--dim);
@@ -904,7 +911,7 @@ body.light .gallery-color-badge.stone {
   flex-shrink: 0;
   width: 72vw;
   aspect-ratio: 1 / 1;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--ink3);
   border: 1px solid var(--border);
@@ -954,7 +961,7 @@ body.light .gallery-color-badge.stone {
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 .pricing-card {
@@ -1061,7 +1068,7 @@ body.light .gallery-color-badge.stone {
 }
 .card-features li {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--muted);
   display: flex;
   align-items: center;
@@ -1081,14 +1088,14 @@ body.light .gallery-color-badge.stone {
   position: absolute;
   top: 2rem; right: 2rem;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 0.35rem 0.9rem;
   border-radius: 99px;
-  background: rgba(192,60,255,0.15);
-  border: 1px solid rgba(192,60,255,0.3);
-  color: var(--p);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text);
 }
 
 /* Addons */
@@ -1124,7 +1131,7 @@ body.light .gallery-color-badge.stone {
 }
 .addon-name {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--muted);
 }
 .addon-price {
@@ -1170,7 +1177,7 @@ body.light .how-design-callout {
   align-items: center;
   gap: 0.45rem;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--y);
@@ -1204,7 +1211,7 @@ body.light .how-design-callout {
 .how-design-step { display: flex; flex-direction: column; gap: 0.2rem; }
 .how-design-step-num {
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--y);
@@ -1217,7 +1224,7 @@ body.light .how-design-callout {
   background: rgba(255,225,60,0.06);
   border: 1px solid rgba(255,225,60,0.16);
   padding: 0.45rem 0.9rem;
-  border-radius: 6px;
+  border-radius: 8px;
   letter-spacing: 0.03em;
   transition: background 0.2s, border-color 0.2s;
 }
@@ -1243,7 +1250,7 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
 }
 .form-design-block-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--y);
@@ -1335,8 +1342,8 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
 .faq-answer-inner {
   padding-bottom: 1.5rem;
   font-family: var(--font-body);
-  font-size: 1.05rem;
-  color: var(--muted);
+  font-size: 1.1rem;
+  color: rgba(232,230,240,0.72);
   line-height: 1.7;
 }
 
@@ -1423,7 +1430,7 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
 .order-right {
   background: transparent;
   border: none;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 2.5rem;
   position: relative;
   animation: orderFormGlow 4s ease-in-out infinite;
@@ -1433,7 +1440,7 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   content: '';
   position: absolute;
   inset: -4px;
-  border-radius: 20px;
+  border-radius: 16px;
   background: conic-gradient(from var(--border-angle), var(--r), var(--p), var(--b), var(--g), var(--r));
   animation: borderSpin 4s linear infinite;
   z-index: 0;
@@ -1443,7 +1450,7 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 16px;
+  border-radius: 12px;
   background: #13132a;
   z-index: 1;
 }
@@ -1452,7 +1459,7 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   position: relative;
   z-index: 2;
 }
-body.light .order-right::after { background: #edeae4; }
+body.light .order-right::after { background: #edeae4; border-radius: 12px; }
 body.light .order-right::before { opacity: 0.7; }
 
 /* Light mode scoped form overrides — warm beige card, soft inputs */
@@ -1525,7 +1532,7 @@ body.light .order-right .order-total-preview #orderTotalAmt { color: #18161f; }
 }
 .form-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--dim);
@@ -1534,7 +1541,7 @@ body.light .order-right .order-total-preview #orderTotalAmt { color: #18161f; }
   width: 100%;
   background: var(--ink);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -1561,7 +1568,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
   background: var(--text);
   padding: 1rem 2rem;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: none;
   position: relative;
   overflow: hidden;
@@ -1596,7 +1603,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
   color: var(--dim);
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1614,7 +1621,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
    COLORS SECTION
 ============================================================ */
 #colors {
-  padding: 5rem 2.5rem;
+  padding: 6rem 2.5rem;
   background: var(--ink);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -1659,7 +1666,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 .color-swatch:hover .swatch-circle { transform: scale(1.12); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
 .swatch-name {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--dim);
@@ -1716,7 +1723,7 @@ footer {
 .footer-links a:hover { color: var(--text); }
 .footer-copy {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   color: var(--dim);
 }
@@ -1941,13 +1948,11 @@ body.light .lightbox-nav:hover {
   #hero { padding: 6rem 1.5rem 4rem; }
   .hero-title { font-size: clamp(2.6rem, 7.5vw, 5rem); }
   #how { padding: 4rem 1.5rem; }
-  .how-steps { grid-template-columns: 1fr; }
-  .how-step { border-right: none; border-bottom: 1px solid var(--border); }
-  .how-step:last-child { border-bottom: none; }
+  .how-steps { grid-template-columns: 1fr; gap: 1rem; }
   #gallery { padding: 4rem 1.5rem; }
   .gallery-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
   }
   .gallery-item { grid-column: span 1 !important; }
   #colors { padding: 4rem 1.5rem; }
@@ -2017,17 +2022,17 @@ body.light .lightbox-nav:hover {
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: var(--muted);
-  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text);
+  background: rgba(255,255,255,0.07);
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   cursor: none;
 }
-.card-cta-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); }
-body.light .card-cta-btn { border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.03); }
+.card-cta-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.12); }
+body.light .card-cta-btn { border-color: rgba(0,0,0,0.18); background: rgba(0,0,0,0.06); color: var(--text); }
 body.light .pricing-card-glow .card-cta-btn { background: var(--text); color: var(--ink); border-color: transparent; }
-body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.18); background: rgba(0,0,0,0.06); color: var(--text); }
+body.light .card-cta-btn:hover { background: #18161f; color: #F5F3EF; border-color: transparent; transform: translateY(-2px); }
 .pricing-card-glow .card-cta-btn {
   color: var(--ink);
   background: var(--text);
@@ -2075,7 +2080,7 @@ body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.18); background: rgb
 }
 .swatch-hint {
   font-family: var(--font-mono);
-  font-size: 0.54rem;
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: transparent;
@@ -2112,7 +2117,7 @@ body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.18); background: rgb
 .carousel-dot.active { background: var(--glow-1); transform: scale(1.5); }
 .carousel-swipe-hint {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--dim);
@@ -2231,7 +2236,7 @@ body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.18); background: rgb
   color: var(--ink);
   background: var(--text);
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
   flex-shrink: 0;
   min-height: 48px;
@@ -2367,25 +2372,93 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
     </div>
     <div class="how-steps">
       <div class="how-step reveal reveal-delay-1">
-        <div class="step-number">01</div>
+        <div class="step-numrow">
+          <div class="step-number">01</div>
+          <svg class="step-icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="ig1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
+                <stop offset="0%"   stop-color="#ff3c6e"/>
+                <stop offset="33%"  stop-color="#c03cff"/>
+                <stop offset="66%"  stop-color="#3ca8ff"/>
+                <stop offset="100%" stop-color="#3cffa0"/>
+                <animateTransform attributeName="gradientTransform" type="rotate" from="0 12 12" to="360 12 12" dur="4s" repeatCount="indefinite"/>
+              </linearGradient>
+            </defs>
+            <path stroke="url(#ig1)" d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3L14.5 4z"/>
+            <circle stroke="url(#ig1)" cx="12" cy="13" r="3"/>
+          </svg>
+        </div>
         <h3 class="step-title" data-i18n="how.step1.title">Send Your Photo</h3>
         <p class="step-desc" data-i18n="how.step1.desc">Any clear photo — solo, couple, family, or with a pet. After payment, simply WhatsApp us your photo and we handle the rest.</p>
         <span class="step-tag" data-i18n="how.step1.tag">You do this</span>
       </div>
-      <div class="how-step how-step-design reveal reveal-delay-2">
-        <div class="step-number">02</div>
+      <div class="how-step reveal reveal-delay-2">
+        <div class="step-numrow">
+          <div class="step-number">02</div>
+          <svg class="step-icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="ig2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
+                <stop offset="0%"   stop-color="#ff3c6e"/>
+                <stop offset="33%"  stop-color="#c03cff"/>
+                <stop offset="66%"  stop-color="#3ca8ff"/>
+                <stop offset="100%" stop-color="#3cffa0"/>
+                <animateTransform attributeName="gradientTransform" type="rotate" from="0 12 12" to="360 12 12" dur="4s" begin="-1s" repeatCount="indefinite"/>
+              </linearGradient>
+            </defs>
+            <path stroke="url(#ig2)" d="M12 20h9"/>
+            <path stroke="url(#ig2)" d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>
+          </svg>
+        </div>
         <h3 class="step-title" data-i18n="how.design.step.title">Custom Design Edit</h3>
         <p class="step-desc" data-i18n="how.design.step.desc">Want a different outfit, added accessories, or props that weren't in your photo? Tell us what to change — we'll Photoshop your photo and send you a preview. You approve it before we ever touch the 3D model.</p>
         <span class="step-tag step-tag-design" data-i18n="how.design.step.tag">Add-On Only</span>
       </div>
       <div class="how-step reveal reveal-delay-3">
-        <div class="step-number">03</div>
+        <div class="step-numrow">
+          <div class="step-number">03</div>
+          <svg class="step-icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="ig3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
+                <stop offset="0%"   stop-color="#ff3c6e"/>
+                <stop offset="33%"  stop-color="#c03cff"/>
+                <stop offset="66%"  stop-color="#3ca8ff"/>
+                <stop offset="100%" stop-color="#3cffa0"/>
+                <animateTransform attributeName="gradientTransform" type="rotate" from="0 12 12" to="360 12 12" dur="4s" begin="-2s" repeatCount="indefinite"/>
+              </linearGradient>
+            </defs>
+            <path stroke="url(#ig3)" d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline stroke="url(#ig3)" points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line stroke="url(#ig3)" x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
         <h3 class="step-title" data-i18n="how.step2.title">We Sculpt in 3D</h3>
         <p class="step-desc" data-i18n="how.step2.desc">We isolate your subject, generate the 3D model, refine it in Blender — capturing your pose, clothing, and expression.</p>
         <span class="step-tag" data-i18n="how.step2.tag">We do this</span>
       </div>
       <div class="how-step reveal reveal-delay-4">
-        <div class="step-number">04</div>
+        <div class="step-numrow">
+          <div class="step-number">04</div>
+          <svg class="step-icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="ig4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
+                <stop offset="0%"   stop-color="#ff3c6e"/>
+                <stop offset="33%"  stop-color="#c03cff"/>
+                <stop offset="66%"  stop-color="#3ca8ff"/>
+                <stop offset="100%" stop-color="#3cffa0"/>
+                <animateTransform attributeName="gradientTransform" type="rotate" from="0 12 12" to="360 12 12" dur="4s" begin="-3s" repeatCount="indefinite"/>
+              </linearGradient>
+            </defs>
+            <circle stroke="url(#ig4)" cx="12" cy="12" r="4"/>
+            <line stroke="url(#ig4)" x1="12" y1="2" x2="12" y2="4"/>
+            <line stroke="url(#ig4)" x1="12" y1="20" x2="12" y2="22"/>
+            <line stroke="url(#ig4)" x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+            <line stroke="url(#ig4)" x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+            <line stroke="url(#ig4)" x1="2" y1="12" x2="4" y2="12"/>
+            <line stroke="url(#ig4)" x1="20" y1="12" x2="22" y2="12"/>
+            <line stroke="url(#ig4)" x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+            <line stroke="url(#ig4)" x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+          </svg>
+        </div>
         <h3 class="step-title" data-i18n="how.step3.title">Receive &amp; Glow</h3>
         <p class="step-desc" data-i18n="how.step3.desc">Printed, assembled with your chosen base, and shipped to you. Glow tier comes with full RGB app control via WLED.</p>
         <span class="step-tag" data-i18n="how.step3.tag">~7–14 days</span>
