@@ -1654,7 +1654,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
    COLORS SECTION
 ============================================================ */
 #colors {
-  padding: 6rem 2.5rem;
+  padding: 3.5rem 2.5rem;
   background: var(--ink);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -1665,8 +1665,13 @@ textarea.form-control { min-height: 100px; resize: vertical; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
+}
+.colors-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 .colors-heading {
   font-family: var(--font-display);
@@ -1686,6 +1691,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
   align-items: center;
   gap: 0.75rem;
   cursor: none;
+  flex: 0 0 110px;
 }
 .swatch-circle {
   width: 56px; height: 56px;
@@ -1710,6 +1716,32 @@ textarea.form-control { min-height: 100px; resize: vertical; }
   font-style: italic;
   color: var(--dim);
   max-width: 260px;
+}
+.color-preview {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  flex-shrink: 0;
+}
+.color-preview-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.color-preview-img.active {
+  opacity: 1;
+}
+.color-swatch.active .swatch-circle {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.6), 0 0 16px 4px rgba(255,255,255,0.15);
+}
+.color-swatch.shadow-swatch.active .swatch-circle {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.45), 0 0 16px 4px rgba(255,255,255,0.1);
 }
 
 /* ============================================================
@@ -1988,7 +2020,7 @@ body.light .lightbox-nav:hover {
     grid-auto-rows: 220px;
   }
   .gallery-item { grid-column: span 1 !important; }
-  #colors { padding: 4rem 1.5rem; }
+  #colors { padding: 2.5rem 1.5rem; }
   #pricing { padding: 4rem 1.5rem; }
   .pricing-grid { grid-template-columns: 1fr; }
   .addons-list { grid-template-columns: 1fr; }
@@ -1997,6 +2029,7 @@ body.light .lightbox-nav:hover {
   .order-inner { grid-template-columns: 1fr; gap: 3rem; }
   .form-row { grid-template-columns: 1fr; }
   .colors-inner { flex-direction: column; align-items: flex-start; }
+  .color-preview { width: 220px; height: 290px; }
   footer { padding: 2rem 1.5rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   /* Gallery carousel bleeds to section edge (matches 1.5rem section padding) */
@@ -2030,7 +2063,7 @@ body.light .lightbox-nav:hover {
   .hero-actions .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
   #hero { padding: 5rem 1.2rem 3rem; }
   #how, #gallery, #pricing, #faq, #order { padding: 3rem 1.2rem; }
-  #colors { padding: 3rem 1.2rem; }
+  #colors { padding: 2rem 1.2rem; }
   .section-title { font-size: clamp(2rem, 11vw, 2.8rem); }
   .gallery-grid { grid-template-columns: 1fr; }
   nav { padding: 0.85rem 1rem; }
@@ -2826,25 +2859,32 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
 <!-- ===== COLORS ===== -->
 <section id="colors">
   <div class="colors-inner">
-    <h3 class="colors-heading reveal" data-i18n="colors.heading">Three<br>Colors</h3>
+    <div class="colors-text">
+      <h3 class="colors-heading reveal" data-i18n="colors.heading">Three<br>Colors</h3>
+      <p class="colors-note reveal reveal-delay-4" data-i18n="colors.note"><em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em></p>
+    </div>
+    <div class="color-preview reveal reveal-delay-1">
+      <img class="color-preview-img active" data-color="snow" src="assets/images/3 Colors/Snow.png" alt="Snow color figurine">
+      <img class="color-preview-img" data-color="shadow" src="assets/images/3 Colors/Shadow.png" alt="Shadow color figurine">
+      <img class="color-preview-img" data-color="stone" src="assets/images/3 Colors/Stone.png" alt="Stone color figurine">
+    </div>
     <ul class="colors-list">
-      <li class="color-swatch snow-swatch reveal reveal-delay-1">
+      <li class="color-swatch snow-swatch active reveal reveal-delay-1" data-color="snow">
         <div class="swatch-circle snow"></div>
         <span class="swatch-name">Snow</span>
         <span class="swatch-hint">Best for Glow</span>
       </li>
-      <li class="color-swatch shadow-swatch reveal reveal-delay-2">
+      <li class="color-swatch shadow-swatch reveal reveal-delay-2" data-color="shadow">
         <div class="swatch-circle shadow"></div>
         <span class="swatch-name">Shadow</span>
         <span class="swatch-hint">Edge-lit effect</span>
       </li>
-      <li class="color-swatch stone-swatch reveal reveal-delay-3">
+      <li class="color-swatch stone-swatch reveal reveal-delay-3" data-color="stone">
         <div class="swatch-circle stone"></div>
         <span class="swatch-name">Stone</span>
         <span class="swatch-hint">Sculpt-like finish</span>
       </li>
     </ul>
-    <p class="colors-note reveal reveal-delay-4" data-i18n="colors.note"><em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em></p>
   </div>
 </section>
 
@@ -3187,6 +3227,19 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// =============================================
+// COLOR SWATCH SWITCHER
+// =============================================
+document.querySelectorAll('.color-swatch').forEach(swatch => {
+  swatch.addEventListener('click', () => {
+    const color = swatch.dataset.color;
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    swatch.classList.add('active');
+    document.querySelectorAll('.color-preview-img').forEach(img => img.classList.remove('active'));
+    document.querySelector(`.color-preview-img[data-color="${color}"]`).classList.add('active');
+  });
+});
 
 // =============================================
 // FAQ ACCORDION
