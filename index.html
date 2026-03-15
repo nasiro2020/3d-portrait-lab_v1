@@ -2147,6 +2147,28 @@ body.light .card-cta-btn:hover { border-color: rgba(0,0,0,0.28); background: rgb
 }
 @media (pointer: coarse) { .card-cta-btn { cursor: pointer; } }
 
+/* Classic card CTA — ghost style matching hero "See Examples" button */
+.pricing-card-classic .card-cta-btn {
+  color: var(--muted);
+  background: transparent;
+  border-color: var(--border);
+}
+.pricing-card-classic .card-cta-btn:hover {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.2);
+  background: transparent;
+}
+body.light .pricing-card-classic .card-cta-btn {
+  color: var(--muted);
+  background: transparent;
+  border-color: rgba(0,0,0,0.18);
+}
+body.light .pricing-card-classic .card-cta-btn:hover {
+  color: var(--text);
+  border-color: rgba(0,0,0,0.28);
+  background: transparent;
+}
+
 /* ============================================================
    COLOR SWATCHES — contextual hover previews
 ============================================================ */
