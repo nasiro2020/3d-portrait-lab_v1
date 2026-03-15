@@ -1468,12 +1468,12 @@ body.light .form-design-block { border-color: rgba(160,130,0,0.18); border-left-
   position: relative;
   animation: orderFormGlow 4s ease-in-out infinite;
 }
-/* Animated gradient — covers full area incl. 2px border overhang */
+/* Animated gradient — covers full area incl. border overhang */
 .order-right::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  border-radius: 16px;
+  inset: -2px;
+  border-radius: 14px;
   background: conic-gradient(from var(--border-angle), var(--r), var(--p), var(--b), var(--g), var(--r));
   animation: borderSpin 4s linear infinite;
   z-index: 0;
@@ -1747,6 +1747,21 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 }
 
 /* ============================================================
+   COLOR PREVIEW — ANIMATED GLOW (drop-shadow follows PNG silhouette)
+============================================================ */
+.color-preview {
+  overflow: visible;
+}
+.color-preview-glow { display: none; }
+
+/* Matches snow swatch hover: pink-red inner + blue outer, breathing pulse */
+@keyframes glow-figurine {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255,60,110,0.33)) drop-shadow(0 0 13px rgba(60,168,255,0.21)); }
+  50%       { filter: drop-shadow(0 0 10px rgba(255,60,110,0.43)) drop-shadow(0 0 20px rgba(60,168,255,0.30)); }
+}
+.color-preview .color-preview-img.active { animation: glow-figurine 3s ease-in-out infinite; }
+
+/* ============================================================
    FOOTER
 ============================================================ */
 footer {
@@ -1775,14 +1790,18 @@ footer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: color 0.2s;
 }
+.footer-logo:hover { color: var(--text); }
 .footer-logo-icon {
   height: 1.6rem;
   width: auto;
   flex-shrink: 0;
 }
-.footer-logo-icon path { fill: rgba(255,255,255,0.55); }
+.footer-logo-icon path { fill: rgba(255,255,255,0.55); transition: fill 0.2s; }
+.footer-logo:hover .footer-logo-icon path { fill: rgba(255,255,255,1); }
 body.light .footer-logo-icon path { fill: rgba(0,0,0,0.55); }
+body.light .footer-logo:hover .footer-logo-icon path { fill: rgba(0,0,0,1); }
 .footer-links {
   display: flex;
   gap: 2rem;
@@ -2902,7 +2921,8 @@ body.light .mobile-order-bar { background: rgba(245,243,239,0.96); }
       <h3 class="colors-heading reveal" data-i18n="colors.heading">Three<br>Colors</h3>
       <p class="colors-note reveal reveal-delay-4" data-i18n="colors.note"><em>Snow (white) pairs best with the Glow tier — every RGB color pops beautifully against white PLA.</em></p>
     </div>
-    <div class="color-preview reveal reveal-delay-1">
+    <div class="color-preview reveal reveal-delay-1" data-active="snow">
+      <div class="color-preview-glow"></div>
       <img class="color-preview-img active" data-color="snow" src="assets/images/3 Colors/Snow.png" alt="Snow color figurine">
       <img class="color-preview-img" data-color="shadow" src="assets/images/3 Colors/Shadow.png" alt="Shadow color figurine">
       <img class="color-preview-img" data-color="stone" src="assets/images/3 Colors/Stone.png" alt="Stone color figurine">
@@ -3420,6 +3440,8 @@ document.querySelectorAll('.color-swatch').forEach(swatch => {
     swatch.classList.add('active');
     document.querySelectorAll('.color-preview-img').forEach(img => img.classList.remove('active'));
     document.querySelector(`.color-preview-img[data-color="${color}"]`).classList.add('active');
+    const preview = document.querySelector('.color-preview');
+    if (preview) preview.dataset.active = color;
   });
 });
 
