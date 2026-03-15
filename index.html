@@ -1997,6 +1997,10 @@ body.light .lightbox-nav:hover {
   .colors-inner { flex-direction: column; align-items: flex-start; }
   footer { padding: 2rem 1.5rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
+  /* Gallery carousel bleeds to section edge (matches 1.5rem section padding) */
+  .gallery-carousel { margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+  /* How step card — reduce side padding for single-column layout */
+  .how-step { padding: 1.75rem 1.5rem; }
 }
 
 /* ============================================================
@@ -2027,7 +2031,20 @@ body.light .lightbox-nav:hover {
   #colors { padding: 3rem 1.2rem; }
   .section-title { font-size: clamp(2rem, 11vw, 2.8rem); }
   .gallery-grid { grid-template-columns: 1fr; }
+  nav { padding: 0.85rem 1rem; }
   .pricing-card { padding: 1.5rem; }
+  /* Pricing addons — reduce thick horizontal padding on small phones */
+  .pricing-addons { padding: 1.5rem 1.25rem; }
+  /* Hot badge — pull back to match reduced card padding */
+  .hot-badge { top: 1.5rem; right: 1.25rem; }
+  /* Order form box — reduce padding so inputs have breathing room */
+  .order-right { padding: 1.5rem 1.2rem; }
+  /* FAQ — reduce the gap between question text and +/− icon */
+  .faq-question { gap: 1rem; }
+  /* Gallery carousel — restore bleed to match 1.2rem section padding at 480px */
+  .gallery-carousel { margin: 0 -1.2rem; padding-left: 1.2rem; padding-right: 1.2rem; }
+  /* How step — tighter side padding */
+  .how-step { padding: 1.5rem 1.25rem; }
   details { padding: 1rem 1.25rem; }
   .nav-cta { display: none; }
   .mobile-menu ul a { font-size: 1.6rem; }
