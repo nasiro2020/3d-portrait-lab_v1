@@ -25,7 +25,7 @@ document.getElementById('order-form')?.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const data = Object.fromEntries(new FormData(this));
-  const waNumber = '60XXXXXXXXX'; // Replace with actual WhatsApp number
+  const waNumber = '60176621073';
 
   const message = encodeURIComponent(
     `Hi! I'd like to place an order:\n\n` +
