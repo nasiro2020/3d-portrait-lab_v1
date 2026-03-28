@@ -21,7 +21,7 @@ if (hamburger && mobileMenu) {
 // Order form — placeholder handler
 // Replace with actual ToyyibPay / Billplz integration
 
-document.getElementById('order-form')?.addEventListener('submit', function (e) {
+document.getElementById('orderForm')?.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const data = Object.fromEntries(new FormData(this));
